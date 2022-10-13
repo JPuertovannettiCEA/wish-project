@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Fighter
   layers:
   - Default
   - TransparentFX
@@ -41,6 +42,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Floor
+    uniqueID: 1656540415
+    locked: 0
   - name: Players
     uniqueID: 3692870797
+    locked: 0
+  - name: Wall
+    uniqueID: 1936276217
+    locked: 0
+  - name: Interact
+    uniqueID: 813006009
     locked: 0
