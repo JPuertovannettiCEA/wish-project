@@ -12,16 +12,17 @@ public class EnemyHitBox : Collidable
     {
         if(col.tag == "Fighter" && col.name == "Player")
         {
+            //HERE IS WHEN THE BATTLE SCENE COMES IN
             //Create a new damage object 
-            Damage dmg = new Damage
+            /**Damage dmg = new Damage
             {
                 damageAmount = damage,
                 origin = transform.position,
                 pushForce = pushForce
-            };
-            //GameManager.instance.ShowText("BATTLE!", 35, Color.red, transform.position, Vector3.zero, 1.0f);
+            };**/
+            GameManager.instance.ShowText("BATTLE!", 35, Color.red, transform.position, Vector3.zero, 1.0f);
 
-            col.SendMessage("ReceiveDamage", dmg);
+            //col.SendMessage("ReceiveDamage", dmg);
         }
     }
 }
