@@ -30,10 +30,18 @@ public class GameManager : MonoBehaviour
     // References
     public PlayerController player;
     //public weapon weapon etc
+    public FloatingTextManager floatingTextManager;
 
     // Logic
     public int money;
     public int experience; 
+
+    //FloatingText
+    public void ShowText(string msg, int fontSize, Color color, Vector3 pos, Vector3 motion, float duration)
+    {
+        floatingTextManager.ShowText(msg,fontSize,color,pos,motion,duration);
+
+    }
 
     // Save state
     /*
@@ -52,7 +60,7 @@ public class GameManager : MonoBehaviour
         s += "0";
 
         PlayerPrefs.SetString("SaveState", s);
-        //Debug.Log("SaveState");
+        Debug.Log("SaveState");
     }
 
     public void LoadState(Scene s, LoadSceneMode mode)
