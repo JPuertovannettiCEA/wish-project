@@ -232,7 +232,7 @@ TextureImporter:
         width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -240,6 +240,90 @@ TextureImporter:
       bones: []
       spriteID: 789911d07f3ee654d9ec04be6d9bd337
       internalID: 1559682555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Placeholder_
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80ec191633e8e314b95ed25b7789d57d
+      internalID: 2025894083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Placeholder_2
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 0
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2247d6f46ccaac04a97200a61d79599c
+      internalID: -2030295793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 48
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d37946c4adf5024fa1150dffa830040
+      internalID: 2074522933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Placeholder_3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2537c23c4860af94a961b509b81da61d
+      internalID: 2133775703
       vertices: []
       indices: 
       edges: []
@@ -258,7 +342,11 @@ TextureImporter:
       Enemy_0: 1559682555
       wall_0: -1626637684
       Player_Placeholder_1: 1244914969
+      Player_Placeholder_3: 2133775703
+      Player_Placeholder_: 2025894083
       Player_Placeholder_0: 982351511
+      Enemy_1: 2074522933
+      Player_Placeholder_2: -2030295793
       floor_0: 2052950139
   spritePackingTag: 
   pSDRemoveMatte: 0
