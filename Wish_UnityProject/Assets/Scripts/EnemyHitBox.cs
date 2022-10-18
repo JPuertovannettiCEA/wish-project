@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyHitBox : Collidable
 {
@@ -13,6 +14,7 @@ public class EnemyHitBox : Collidable
         if(col.tag == "Fighter" && col.name == "Player")
         {
             //HERE IS WHEN THE BATTLE SCENE COMES IN
+            SceneManager.LoadScene("BattleScene");
             //Create a new damage object 
             /**Damage dmg = new Damage
             {
@@ -20,7 +22,7 @@ public class EnemyHitBox : Collidable
                 origin = transform.position,
                 pushForce = pushForce
             };**/
-            GameManager.instance.ShowText("BATTLE!", 35, Color.red, transform.position, Vector3.zero, 1.0f);
+            //GameManager.instance.ShowText("BATTLE!", 35, Color.red, transform.position, Vector3.zero, 1.0f);
 
             //col.SendMessage("ReceiveDamage", dmg);
         }

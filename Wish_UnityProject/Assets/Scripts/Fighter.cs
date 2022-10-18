@@ -21,17 +21,17 @@ public class Fighter : MonoBehaviour
         if(Time.time - lastImmune > immuneTime)
         {
             lastImmune = Time.time;
-            hitPoint -= damage.damageAmount;
+            //hitPoint -= damage.damageAmount;
             pushDirection = (transform.position - damage.origin).normalized * damage.pushForce;
 
-            GameManager.instance.ShowText("BATTLE!", 35, Color.red, transform.position, Vector3.zero, 1.0f);
+            //GameManager.instance.ShowText("BATTLE!", 35, Color.red, transform.position, Vector3.zero, 1.0f);
 
             //DEATH
-            if(hitPoint <= 0)
+            /**if(hitPoint <= 0)
             {
                 hitPoint = 0;
                 Death();
-            }
+            }**/
         }
 
         //GameManager.instance.ShowText("BATTLE!", 35, Color.red, transform.position, Vector3.zero, 1.0f);
