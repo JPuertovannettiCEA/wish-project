@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
         //PlayerPrefs.DeleteAll();
 
         instance = this;
+        //inventory.slots[] = 3;
         SceneManager.sceneLoaded += LoadState;
         DontDestroyOnLoad(gameObject);
     }
@@ -35,6 +36,8 @@ public class GameManager : MonoBehaviour
     // Logic
     public int money;
     public int experience; 
+    public bool[] inventoryisFull;
+    public GameObject[] inventorySlots;
 
     //FloatingText
     public void ShowText(string msg, int fontSize, Color color, Vector3 pos, Vector3 motion, float duration)
