@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public PlayerController player;
     //public weapon weapon etc
     public FloatingTextManager floatingTextManager;
+    public DialogueTextManager dialogue;
 
     // Logic
     public int money;
@@ -44,6 +45,10 @@ public class GameManager : MonoBehaviour
     {
         floatingTextManager.ShowText(msg,fontSize,color,pos,motion,duration);
 
+    }
+    public void ShowDialogue(string msg, string character, GameObject Image, Color color, Vector3 motion, float duration)
+    {
+        dialogue.ShowDialogue(msg,character,Image,color,motion,duration);
     }
 
     // Save state

@@ -140,3 +140,4 @@ MonoBehaviour:
     maxNormalAngle: 0
   emptyChest: {fileID: 21300000, guid: 974396b5130286d4090d7cff505e65a3, type: 3}
   Amount: 10
+  characterImage: {fileID: 8074680754341607814, guid: 464b11cdda8296f4ba907645e6b928ce, type: 3}
