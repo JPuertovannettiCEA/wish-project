@@ -10,8 +10,10 @@ public abstract class Mover : Fighter //ABSTRACT MEANS THAT THIS CAN ONLY BE USE
 
     protected RaycastHit2D hit;
 
-    protected float ySpeed = 0.75f;
-    protected float xSpeed = 1.0f;
+    //protected float ySpeed = 0.75f;
+    //protected float xSpeed = 1.0f;
+
+    protected float speed = 1.0f;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -30,16 +32,16 @@ public abstract class Mover : Fighter //ABSTRACT MEANS THAT THIS CAN ONLY BE USE
     protected virtual void UpdateMotor(Vector3 Input)
     {
         // Reset moveDelta
-        moveDelta = new Vector3(Input.x * xSpeed, Input.y * ySpeed, 0);
+        moveDelta = new Vector3(Input.x * speed, Input.y * speed, 0);
 
         // Swap sprite direction to right or left
         if(moveDelta.x > 0)
         {
-            transform.localScale = Vector3.one;
+            transform.localScale = new Vector3(-1,1,1);
         } 
         else if(moveDelta.x < 0)
         {
-            transform.localScale = new Vector3(-1,1,1);
+            transform.localScale = Vector3.one;
         }
 
         // Add push vector, if any
