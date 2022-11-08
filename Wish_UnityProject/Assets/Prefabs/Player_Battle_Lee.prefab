@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7862696649391317733}
   - component: {fileID: 7862696649391317732}
   m_Layer: 0
-  m_Name: Player_Battle_0
+  m_Name: Player_Battle_Lee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 7862696649391317730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7862696650081822254}
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86bf588b233a543479bbafc7a6c6b25d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Zeph
+  unitName: Lee
   unitLevel: 5
   damage: 3
   maxHP: 10
@@ -123,7 +123,7 @@ SpriteRenderer:
   m_SortingLayerID: -602096499
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1436950234, guid: 1d444ba023ed7544982d7f7f2946e04a, type: 3}
+  m_Sprite: {fileID: 541562286, guid: 131a1d6d3ce80ab418323354a4b7764c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
