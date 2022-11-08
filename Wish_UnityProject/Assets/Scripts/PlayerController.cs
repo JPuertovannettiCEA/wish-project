@@ -7,7 +7,7 @@ public class PlayerController : Mover
 {
     private Animator animator;
 
-    private float x, y;
+    public float x, y;
 
     //private float speed = 1.0f;
     
