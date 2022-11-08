@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -46,10 +47,10 @@ public class GameManager : MonoBehaviour
         floatingTextManager.ShowText(msg,fontSize,color,pos,motion,duration);
 
     }
-    public void ShowDialogue(string msg, string character, GameObject Image, Color color, Vector3 motion, float duration)
+    /**public void ShowDialogue(string msg, string character, Image Image, Color color, float duration)
     {
-        dialogue.ShowDialogue(msg,character,Image,color,motion,duration);
-    }
+        dialogue.ShowDialogue(msg,character,Image,color,duration);
+    }**/
 
     // Save state
     /*

@@ -2,53 +2,70 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueTextManager : MonoBehaviour
 {
-    public GameObject textContainer;
-    //public GameObject characterImage;
-    public GameObject textPrefab;
+    public TMP_Text nameText;
+    public TMP_Text dialogueText;
 
-    private List<DialogueText> DialogueTexts = new List<DialogueText>();
+    public Image avatar;
 
-    private void Update()
+    public Image NPC;
+    private Queue<string> sentences;
+
+    public Animator animator;
+    private void Start()
     {
-        foreach(DialogueText txt in DialogueTexts)
+        sentences = new Queue<string>();
+        //avatar = NPC;
+    }
+
+    public void StartDialogue(DialogueText dialogue)
+    {
+        animator.SetBool("isOpen",true);
+        //Debug.Log("Starting conversation with" + dialogue.name);
+        avatar.sprite = NPC.sprite;
+        nameText.text = dialogue.name;
+
+        sentences.Clear();
+
+        foreach(string sentence in dialogue.sentences)
         {
-            txt.UpdateDialogueText();
+            sentences.Enqueue(sentence);
+        }
+
+        DisplayNextSentence();
+    }
+
+    public void DisplayNextSentence()
+    {
+        if(sentences.Count == 0)
+        {
+            EndDialogue();
+            return;
+        }
+
+        string sentence = sentences.Dequeue();
+        //dialogueText.text = sentence;
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(sentence));
+
+    }
+
+    IEnumerator TypeSentence (string sentence)
+    {
+        dialogueText.text = "";
+        foreach (char letter in sentence.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
-    public void ShowDialogue(string msg, string character,GameObject Image, Color color, Vector3 motion, float duration)
+    void EndDialogue()
     {
-        DialogueText DialogueText = GetDialogueText();
-
-        DialogueText.dialogueText.text = msg;
-        //DialogueText.dialogueText.fontSize = fontSize;
-        DialogueText.dialogueText.color = color;
-        DialogueText.nameText.text = character;
-        DialogueText.characterImage = Image;
-        
-        //DialogueText.go.transform.position = Camera.main.WorldToScreenPoint(pos); //Transfer world space to screen space so we can use it in the UI
-        DialogueText.motion = motion;
-        DialogueText.duration = duration;
-
-        DialogueText.ShowDialogue();
-    }
-    private DialogueText GetDialogueText()
-    {
-        DialogueText txt = DialogueTexts.Find(t => !t.active); //Exactly the same as a For loop
-
-        if(txt == null)
-        {
-            txt = new DialogueText();
-            txt.go = Instantiate(textPrefab);
-            txt.go.transform.SetParent(textContainer.transform);
-            txt.dialogueText = txt.go.GetComponent<TMP_Text>();
-
-            DialogueTexts.Add(txt);
-        }
-
-        return txt;
+        animator.SetBool("isOpen",false);
+        //Debug.Log("End conversation");
     }
 }
