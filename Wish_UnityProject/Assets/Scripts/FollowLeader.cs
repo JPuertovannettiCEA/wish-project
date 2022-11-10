@@ -28,15 +28,15 @@ public class FollowLeader : Mover
         
         if(frontCharacter.GetComponent<PlayerController>().x != 0)
         {
-            UpdateMotor((frontCharacter.transform.position - new Vector3((transform.position.x - 0.243f),transform.position.y, transform.position.z)).normalized);
-            xLast = frontCharacter.transform.position.x - transform.position.x;
+            UpdateMotor((frontCharacter.transform.position - new Vector3((transform.position.x - 0.190f),transform.position.y, transform.position.z)).normalized);
+            xLast = frontCharacter.GetComponent<PlayerController>().x;
             isCloser = false;
         }
         if(frontCharacter.GetComponent<PlayerController>().y != 0)
         {
-            UpdateMotor((frontCharacter.transform.position - new Vector3(transform.position.x,(transform.position.y - 0.306f), transform.position.z).normalized));
-            //UpdateMotor((frontCharacter.transform.position - transform.position).normalized);
-            yLast = frontCharacter.transform.position.y - transform.position.y;
+            //UpdateMotor((frontCharacter.transform.position - new Vector3(transform.position.x,(transform.position.y - 0.306f), transform.position.z).normalized));
+            UpdateMotor((frontCharacter.transform.position - transform.position).normalized);
+            yLast = frontCharacter.GetComponent<PlayerController>().y;
             isCloser = false;
             //xLast = 0f;
             //yLast = 0f;
@@ -45,7 +45,7 @@ public class FollowLeader : Mover
         {
             if(isCloser == false)
             {
-                UpdateMotor((frontCharacter.transform.position - new Vector3(transform.position.x,(transform.position.y - 0.306f), transform.position.z).normalized));
+               //UpdateMotor((frontCharacter.transform.position - new Vector3(transform.position.x,(transform.position.y - 0.306f), transform.position.z).normalized));
                 isCloser = true;
             }
             yLast = 0f;
