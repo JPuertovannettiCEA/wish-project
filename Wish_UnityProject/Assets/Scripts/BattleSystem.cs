@@ -16,6 +16,16 @@ public enum BattleStates
 
 public class BattleSystem : MonoBehaviour
 {
+    //LEVEL LOAD PARAMETERS
+    public Animator transition;
+
+    public float transitionTime = 1f;
+
+    /**
+    7 = FOREST
+    8 = LIGHT FOREST
+    9 = DUNGEON
+    **/
 
     public GameObject playerPrefab1;
     public GameObject playerPrefab2;
@@ -106,7 +116,22 @@ public class BattleSystem : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene("GameplayScene");
+        //FOREST
+        if(SceneManager.GetActiveScene().buildIndex == 7)
+        {
+            StartCoroutine(LoadLevel(2));
+        }
+        //LIGHT FOREST
+        if(SceneManager.GetActiveScene().buildIndex == 8)
+        {
+            StartCoroutine(LoadLevel(3));
+        }
+        //DUNGEON
+        if(SceneManager.GetActiveScene().buildIndex == 9)
+        {
+            StartCoroutine(LoadLevel(5));
+        }
+        //SceneManager.LoadScene("GameplayScene");
     }
 
     IEnumerator PlayerHeal()
@@ -138,8 +163,23 @@ public class BattleSystem : MonoBehaviour
             //END BATTLE
             state = BattleStates.WON;
             EndBattle();
-            yield return new WaitForSeconds(2f);
-            SceneManager.LoadScene("GameplayScene");
+            //FOREST
+            if(SceneManager.GetActiveScene().buildIndex == 7)
+            {
+                StartCoroutine(LoadLevel(2));
+            }
+            //LIGHT FOREST
+            if(SceneManager.GetActiveScene().buildIndex == 8)
+            {
+                StartCoroutine(LoadLevel(3));
+            }
+            //DUNGEON
+            if(SceneManager.GetActiveScene().buildIndex == 9)
+            {
+                StartCoroutine(LoadLevel(5));
+            }
+            //yield return new WaitForSeconds(2f);
+            //SceneManager.LoadScene("GameplayScene");
         }
         else
         {
@@ -166,8 +206,23 @@ public class BattleSystem : MonoBehaviour
         {
             state = BattleStates.LOST;
             EndBattle();
-            yield return new WaitForSeconds(2f);
-            SceneManager.LoadScene("GameplayScene");
+            //FOREST
+            if(SceneManager.GetActiveScene().buildIndex == 7)
+            {
+                StartCoroutine(LoadLevel(2));
+            }
+            //LIGHT FOREST
+            if(SceneManager.GetActiveScene().buildIndex == 8)
+            {
+                StartCoroutine(LoadLevel(3));
+            }
+            //DUNGEON
+            if(SceneManager.GetActiveScene().buildIndex == 9)
+            {
+                StartCoroutine(LoadLevel(5));
+            }
+            //yield return new WaitForSeconds(2f);
+            //SceneManager.LoadScene("GameplayScene");
         }
         else
         {
@@ -186,5 +241,18 @@ public class BattleSystem : MonoBehaviour
         {
             dialogueText.text = "You were defeated";
         }
+    }
+
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        //Play animation
+        transition.SetTrigger("Start");
+
+        //Wait to stop playing
+        yield return new WaitForSeconds(transitionTime);
+
+        //Load Scene
+        SceneManager.LoadScene(levelIndex);
+
     }
 }

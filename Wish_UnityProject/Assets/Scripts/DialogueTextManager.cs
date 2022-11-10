@@ -14,6 +14,8 @@ public class DialogueTextManager : MonoBehaviour
     public Image NPC;
     private Queue<string> sentences;
 
+    public bool isColliding = false;
+
     public Animator animator;
     private void Start()
     {
@@ -25,7 +27,9 @@ public class DialogueTextManager : MonoBehaviour
     {
         animator.SetBool("isOpen",true);
         //Debug.Log("Starting conversation with" + dialogue.name);
+        isColliding = true;
         avatar.sprite = NPC.sprite;
+        GameManager.instance.player.GetComponent<PlayerController>().enabled = false;
         nameText.text = dialogue.name;
 
         sentences.Clear();
@@ -66,6 +70,7 @@ public class DialogueTextManager : MonoBehaviour
     void EndDialogue()
     {
         animator.SetBool("isOpen",false);
+        GameManager.instance.player.GetComponent<PlayerController>().enabled = true;
         //Debug.Log("End conversation");
     }
 }

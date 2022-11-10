@@ -30,8 +30,14 @@ EditorBuildSettings:
     path: Assets/Scenes/GameplayScene_Route3.unity
     guid: 2f131d8571b5e384db849b35840bfdc0
   - enabled: 1
-    path: Assets/Scenes/BattleScene.unity
+    path: Assets/Scenes/BattleSceneForest.unity
     guid: b20c213173b56544aad2fda50ad873d8
+  - enabled: 1
+    path: Assets/Scenes/BattleSceneLightForest.unity
+    guid: fa290dd25e832834eb738f7d87cdaedd
+  - enabled: 1
+    path: Assets/Scenes/BattleSceneDungeon.unity
+    guid: ff9b814c11af1924f9be824b4f708d41
   - enabled: 1
     path: Assets/Scenes/Instructions.unity
     guid: 8fac9a4fc1d222e48a50b14602d0c2c9

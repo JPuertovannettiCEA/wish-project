@@ -9,9 +9,13 @@ public class NPCDialogue : Collidable
 
     protected override void OnCollide(Collider2D col)
     {
-        if(col.tag == "Fighter")
+        if(col.tag == "Fighter" && GameManager.instance.dialogue.isColliding == false)
         {
             GameManager.instance.dialogue.StartDialogue(dialogue);
+        } 
+        else
+        {
+            //GameManager.instance.dialogue.isColliding = false;
         }
     }
 }
