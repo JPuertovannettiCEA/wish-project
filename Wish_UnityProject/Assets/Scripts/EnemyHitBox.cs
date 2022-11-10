@@ -15,7 +15,7 @@ public class EnemyHitBox : Collidable
         {
             //HERE IS WHEN THE BATTLE SCENE COMES IN
             GameManager.instance.SaveState();
-            SceneManager.LoadScene("BattleScene");
+            SceneManager.LoadScene("BattleSceneForest");
             //Create a new damage object 
             /**Damage dmg = new Damage
             {
