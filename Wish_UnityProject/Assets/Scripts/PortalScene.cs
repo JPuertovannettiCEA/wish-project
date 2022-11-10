@@ -13,7 +13,31 @@ public class PortalScene : Collidable
             //Teleport the player
             GameManager.instance.SaveState();
             //string sceneName = sceneNames[Random.Range(0, sceneNames.Length)];
-            SceneManager.LoadScene("GameOverScene");
+            if(this.name == "Portal_Main")
+            {
+                SceneManager.LoadScene(sceneNames[1]);
+
+            }
+            if(this.name == "Portal_R1")
+            {
+                SceneManager.LoadScene(sceneNames[2]);
+
+            }
+            if(this.name == "Portal_R2")
+            {
+                SceneManager.LoadScene(sceneNames[3]);
+
+            }
+            if(this.name == "Portal_R2_Dungeon")
+            {
+                SceneManager.LoadScene(sceneNames[4]);
+
+            }
+            if(this.name == "Portal_R3")
+            {
+                SceneManager.LoadScene(sceneNames[5]);
+
+            }
         }
     }
 }

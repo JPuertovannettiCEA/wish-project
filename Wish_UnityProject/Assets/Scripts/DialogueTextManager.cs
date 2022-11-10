@@ -1,0 +1,71 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class DialogueTextManager : MonoBehaviour
+{
+    public TMP_Text nameText;
+    public TMP_Text dialogueText;
+
+    public Image avatar;
+
+    public Image NPC;
+    private Queue<string> sentences;
+
+    public Animator animator;
+    private void Start()
+    {
+        sentences = new Queue<string>();
+        //avatar = NPC;
+    }
+
+    public void StartDialogue(DialogueText dialogue)
+    {
+        animator.SetBool("isOpen",true);
+        //Debug.Log("Starting conversation with" + dialogue.name);
+        avatar.sprite = NPC.sprite;
+        nameText.text = dialogue.name;
+
+        sentences.Clear();
+
+        foreach(string sentence in dialogue.sentences)
+        {
+            sentences.Enqueue(sentence);
+        }
+
+        DisplayNextSentence();
+    }
+
+    public void DisplayNextSentence()
+    {
+        if(sentences.Count == 0)
+        {
+            EndDialogue();
+            return;
+        }
+
+        string sentence = sentences.Dequeue();
+        //dialogueText.text = sentence;
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(sentence));
+
+    }
+
+    IEnumerator TypeSentence (string sentence)
+    {
+        dialogueText.text = "";
+        foreach (char letter in sentence.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    void EndDialogue()
+    {
+        animator.SetBool("isOpen",false);
+        //Debug.Log("End conversation");
+    }
+}

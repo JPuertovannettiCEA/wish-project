@@ -6,6 +6,7 @@ public class Chest : Collectable
 {
     public Sprite emptyChest;
     public int Amount = 10;
+    public GameObject characterImage;
 
     protected override void OnCollect()
     {
@@ -14,6 +15,9 @@ public class Chest : Collectable
             collected = true;
             GetComponent<SpriteRenderer>().sprite = emptyChest;
             GameManager.instance.ShowText("+" + Amount + "Pesos!",35,Color.black,transform.position,Vector3.up * 50, 3.0f);
+            //GameManager.instance.ShowDialogue("Yes! We got some money!","ZEPH",characterImage,Color.white,Vector3.up * 1, 3.0f);
+            //GameManager.instance.ShowDialogue("Yes! We got some money!",35,Color.black,transform.position,Vector3.up * 1, 3.0f);
+            
             //Debug.Log("Grant " + Amount + " Pesos");
         }
     }

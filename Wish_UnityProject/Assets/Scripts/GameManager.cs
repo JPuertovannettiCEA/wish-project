@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,24 +18,28 @@ public class GameManager : MonoBehaviour
         //PlayerPrefs.DeleteAll();
 
         instance = this;
+        //inventory.slots[] = 3;
         SceneManager.sceneLoaded += LoadState;
         DontDestroyOnLoad(gameObject);
     }
 
     // Resources
     public List<Sprite> playerSprites;
-    public List<Sprite> weaponSprites;
-    public List<int> weaponPrices;
-    public List<int> xpTable; 
+    //public List<Sprite> weaponSprites;
+    //public List<int> weaponPrices;
+    //public List<int> xpTable; 
 
     // References
     public PlayerController player;
     //public weapon weapon etc
     public FloatingTextManager floatingTextManager;
+    public DialogueTextManager dialogue;
 
     // Logic
     public int money;
     public int experience; 
+    public bool[] inventoryisFull;
+    public GameObject[] inventorySlots;
 
     //FloatingText
     public void ShowText(string msg, int fontSize, Color color, Vector3 pos, Vector3 motion, float duration)
@@ -42,6 +47,10 @@ public class GameManager : MonoBehaviour
         floatingTextManager.ShowText(msg,fontSize,color,pos,motion,duration);
 
     }
+    /**public void ShowDialogue(string msg, string character, Image Image, Color color, float duration)
+    {
+        dialogue.ShowDialogue(msg,character,Image,color,duration);
+    }**/
 
     // Save state
     /*
