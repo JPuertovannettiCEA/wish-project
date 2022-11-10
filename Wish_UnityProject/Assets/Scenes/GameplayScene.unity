@@ -1033,6 +1033,7 @@ MonoBehaviour:
   dialogueText: {fileID: 637855396}
   avatar: {fileID: 1928218843}
   NPC: {fileID: 8074680754341607812, guid: 464b11cdda8296f4ba907645e6b928ce, type: 3}
+  isColliding: 0
   animator: {fileID: 930865973}
 --- !u!1 &73891391
 GameObject:
@@ -84312,7 +84313,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.22, y: 0.31}
+  m_Size: {x: 0.25, y: 0.27}
   m_EdgeRadius: 0
 --- !u!212 &848906379
 SpriteRenderer:
