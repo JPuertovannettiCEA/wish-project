@@ -28,13 +28,13 @@ public class FollowPlayer2 : Mover
         if(frontCharacter.GetComponent<FollowPlayer>().xLast != 0)
         {
             //UpdateMotor((frontCharacter.transform.position - transform.position).normalized);
-            UpdateMotor((frontCharacter.transform.position - new Vector3((transform.position.x + 0.243f),transform.position.y, transform.position.z)).normalized);
+            UpdateMotor((frontCharacter.transform.position - new Vector3((transform.position.x - 0.243f),transform.position.y, transform.position.z)).normalized);
             xLast = frontCharacter.transform.position.x - transform.position.x;
             isCloser = false;
         }
         if(frontCharacter.GetComponent<FollowPlayer>().yLast != 0)
         {
-            UpdateMotor((frontCharacter.transform.position - new Vector3(transform.position.x,(transform.position.y + 0.306f), transform.position.z).normalized));
+            UpdateMotor((frontCharacter.transform.position - new Vector3(transform.position.x,(transform.position.y - 0.306f), transform.position.z).normalized));
             //UpdateMotor((frontCharacter.transform.position - transform.position).normalized);
             yLast = frontCharacter.transform.position.y - transform.position.y;
             isCloser = false;
@@ -45,7 +45,7 @@ public class FollowPlayer2 : Mover
         {
             if(isCloser == false)
             {
-                UpdateMotor((frontCharacter.transform.position - new Vector3(transform.position.x,(transform.position.y + 0.306f), transform.position.z).normalized));
+                UpdateMotor((frontCharacter.transform.position - new Vector3(transform.position.x,(transform.position.y - 0.306f), transform.position.z).normalized));
                 isCloser = true;
             }
             yLast = 0f;
@@ -54,7 +54,7 @@ public class FollowPlayer2 : Mover
         {
             if(isCloser == false)
             {
-                UpdateMotor((frontCharacter.transform.position - new Vector3((transform.position.x + 0.243f),transform.position.y, transform.position.z)).normalized);
+                UpdateMotor((frontCharacter.transform.position - new Vector3((transform.position.x - 0.243f),transform.position.y, transform.position.z)).normalized);
                 isCloser = true;
             }
             xLast = 0f;
