@@ -8,7 +8,10 @@ using UnityEngine.SceneManagement;
 public enum BattleStates
 {
     START,
-    PLAYERTURN,
+    PLAYER1TURN,
+    PLAYER2TURN,
+    PLAYER3TURN,
+    PLAYER4TURN,
     ENEMYTURN,
     WON,
     LOST
@@ -44,19 +47,42 @@ public class BattleSystem : MonoBehaviour
     Unit playerUnit_3;
     Unit playerUnit_4;
     Unit enemyUnit;
+    private GameObject enemy_type;
+    private int enemyXP;
 
     public TMP_Text dialogueText;
 
-    public BattleHUD playerHUD;
+    public TMP_Text partyText;
+
+    public BattleHUD player1HUD;
+    public BattleHUD player2HUD;
+    public BattleHUD player3HUD;
+    public BattleHUD player4HUD;
 
     public BattleHUD enemyHUD;
+    private bool is1Dead = false;
+    private bool is2Dead = false;
+    private bool is3Dead = false;
+    private bool is4Dead = false;
+    private bool allDead = false;
 
     public BattleStates state;
     private void Start()
     {
+        if(SceneManager.GetActiveScene().buildIndex == 7) // FOREST
+        {
+            enemyXP = 5;
+        }
+        if(SceneManager.GetActiveScene().buildIndex == 8) // LIGHTFOREST
+        {
+            enemyXP = 3;
+        }
+        if(SceneManager.GetActiveScene().buildIndex == 9) // DUNGEON
+        {
+            enemyXP = 10;
+        }
         state = BattleStates.START;
         StartCoroutine(SetupBattle());
-        
     }
 
     IEnumerator SetupBattle()
@@ -75,43 +101,138 @@ public class BattleSystem : MonoBehaviour
 
         dialogueText.text = "A wild " + enemyUnit.unitName + " approaches!";
 
-        playerHUD.SetHUD(playerUnit_1);
+        player1HUD.SetHUD(playerUnit_1);
+        player2HUD.SetHUD(playerUnit_2);
+        player3HUD.SetHUD(playerUnit_3);
+        player4HUD.SetHUD(playerUnit_4);
         enemyHUD.SetHUD(enemyUnit);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
 
-        state = BattleStates.PLAYERTURN;
-        PlayerTurn();
+        state = BattleStates.PLAYER1TURN;
+        StartCoroutine(Player1Turn());
 
     }
 
-    void PlayerTurn()
+    IEnumerator Player1Turn()
     {
-        dialogueText.text = "Choose an action!";
+        if(is1Dead == true)
+        {
+            dialogueText.text = playerUnit_1.unitName + "can't attack anymore!";
+            partyText.text = "...";
+            yield return new WaitForSeconds(2f);
+            state = BattleStates.PLAYER2TURN;
+            StartCoroutine(Player2Turn());
+        }
+        else
+        {        
+            dialogueText.text = "Choose an action!";
+            partyText.text = "What should " + playerUnit_1.unitName + " do?";
+        }
+    }
+    IEnumerator Player2Turn()
+    {
+        if(is2Dead == true)
+        {
+            dialogueText.text = playerUnit_2.unitName + "can't attack anymore!";
+            partyText.text = "...";
+            yield return new WaitForSeconds(2f);
+            state = BattleStates.PLAYER3TURN;
+            StartCoroutine(Player3Turn());
+        }
+        else
+        {
+            dialogueText.text = "Choose an action!";
+            partyText.text = "What should " + playerUnit_2.unitName + " do?";
+        }
+    }
+    IEnumerator Player3Turn()
+    {
+        if(is3Dead == true)
+        {
+            dialogueText.text = playerUnit_3.unitName + "can't attack anymore!";
+            partyText.text = "...";
+            yield return new WaitForSeconds(2f);
+            state = BattleStates.PLAYER4TURN;
+            StartCoroutine(Player4Turn());
+        }
+        else
+        {
+            dialogueText.text = "Choose an action!";
+            partyText.text = "What should " + playerUnit_3.unitName + " do?";
+        }
+    }
+    IEnumerator Player4Turn()
+    {
+        if(is4Dead == true)
+        {
+            dialogueText.text = playerUnit_4.unitName + "can't attack anymore!";
+            partyText.text = "...";
+            yield return new WaitForSeconds(2f);
+            state = BattleStates.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }
+        else
+        {
+            dialogueText.text = "Choose an action!";
+            partyText.text = "What should " + playerUnit_4.unitName + " do?";
+        }
     }
 
     public void OnAttackButton()
     {
-        if(state != BattleStates.PLAYERTURN)
+        //if(state != BattleStates.PLAYER1TURN)
+        if(state == BattleStates.PLAYER1TURN && is1Dead == false)
+        {
+            StartCoroutine(Player1Attack());
+        }
+        if(state == BattleStates.PLAYER2TURN && is2Dead == false)
+        {
+            StartCoroutine(Player2Attack());
+        }
+        if(state == BattleStates.PLAYER3TURN && is3Dead == false)
+        {
+            StartCoroutine(Player3Attack());
+        }
+        if(state == BattleStates.PLAYER4TURN && is4Dead == false)
+        {
+            StartCoroutine(Player4Attack());
+        }
+        else
         {
             return;
         }
 
-        StartCoroutine(PlayerAttack());
     }
     public void OnHealButton()
     {
-        if(state != BattleStates.PLAYERTURN)
+        //if(state != BattleStates.PLAYER1TURN)
+        if(state == BattleStates.PLAYER1TURN && is1Dead == false)
+        {
+            StartCoroutine(Player1Heal());
+        }
+        if(state == BattleStates.PLAYER2TURN && is2Dead == false)
+        {
+            StartCoroutine(Player2Heal());
+        }
+        if(state == BattleStates.PLAYER3TURN && is3Dead == false)
+        {
+            StartCoroutine(Player3Heal());
+        }
+        if(state == BattleStates.PLAYER4TURN && is4Dead == false)
+        {
+            StartCoroutine(Player4Heal());
+        }
+        else
         {
             return;
         }
 
-        StartCoroutine(PlayerHeal());
     }
 
     public void OnEscapeButton()
     {
-        if(state != BattleStates.PLAYERTURN)
+        if(state == BattleStates.ENEMYTURN)
         {
             return;
         }
@@ -134,28 +255,196 @@ public class BattleSystem : MonoBehaviour
         //SceneManager.LoadScene("GameplayScene");
     }
 
-    IEnumerator PlayerHeal()
+    IEnumerator Player1Heal()
     {
         playerUnit_1.Heal(5);
 
-        playerHUD.SetHP(playerUnit_1.currentHP);
-        dialogueText.text = "You heal yourself! You feel renewed!";
+        player1HUD.SetHP(playerUnit_1.currentHP);
+        dialogueText.text = playerUnit_1.unitName + " heals themselves! Now " + playerUnit_1.unitName + " is ready to keep fighting!";
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
+
+        state = BattleStates.PLAYER2TURN;
+        StartCoroutine(Player2Turn());
+        //state = BattleStates.ENEMYTURN;
+        //StartCoroutine(EnemyTurn());
+
+    }
+    IEnumerator Player2Heal()
+    {
+        playerUnit_2.Heal(5);
+
+        player2HUD.SetHP(playerUnit_2.currentHP);
+        dialogueText.text = playerUnit_2.unitName + " heals themselves! Now " + playerUnit_2.unitName + " is ready to keep fighting!";
+
+        yield return new WaitForSeconds(2f);
+
+        state = BattleStates.PLAYER3TURN;
+        StartCoroutine(Player3Turn());
+        //state = BattleStates.ENEMYTURN;
+        //StartCoroutine(EnemyTurn());
+
+    }
+    IEnumerator Player3Heal()
+    {
+        playerUnit_3.Heal(5);
+
+        player3HUD.SetHP(playerUnit_3.currentHP);
+        dialogueText.text = playerUnit_3.unitName + " heals themselves! Now " + playerUnit_3.unitName + " is ready to keep fighting!";
+
+        yield return new WaitForSeconds(2f);
+
+        state = BattleStates.PLAYER4TURN;
+        StartCoroutine(Player4Turn());
+        //state = BattleStates.ENEMYTURN;
+        //StartCoroutine(EnemyTurn());
+
+    }
+    IEnumerator Player4Heal()
+    {
+        playerUnit_4.Heal(5);
+
+        player4HUD.SetHP(playerUnit_4.currentHP);
+        dialogueText.text = playerUnit_4.unitName + " heals themselves! Now " + playerUnit_4.unitName + " is ready to keep fighting!";
+
+        yield return new WaitForSeconds(2f);
 
         state = BattleStates.ENEMYTURN;
         StartCoroutine(EnemyTurn());
 
     }
 
-    IEnumerator PlayerAttack()
+    IEnumerator Player1Attack()
     {
         bool isDead = enemyUnit.TakeDamage(playerUnit_1.damage);
 
         enemyHUD.SetHP(enemyUnit.currentHP);
-        dialogueText.text = "Player attacks!";
+        dialogueText.text = playerUnit_1.unitName + " attacks!";
         //damage the enemy
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+
+        //Check if enemy is dead
+        if(isDead)
+        {
+            //END BATTLE
+            state = BattleStates.WON;
+            EndBattle();
+            //FOREST
+            if(SceneManager.GetActiveScene().buildIndex == 7)
+            {
+                StartCoroutine(LoadLevel(2));
+            }
+            //LIGHT FOREST
+            if(SceneManager.GetActiveScene().buildIndex == 8)
+            {
+                StartCoroutine(LoadLevel(3));
+            }
+            //DUNGEON
+            if(SceneManager.GetActiveScene().buildIndex == 9)
+            {
+                StartCoroutine(LoadLevel(5));
+            }
+            //yield return new WaitForSeconds(2f);
+            //SceneManager.LoadScene("GameplayScene");
+        }
+        else
+        {
+            state = BattleStates.PLAYER2TURN;
+            StartCoroutine(Player2Turn());
+            // ENEMY TURN ORIGINALLY
+        }
+        //Change state based on what happened
+    }
+    IEnumerator Player2Attack()
+    {
+        bool isDead = enemyUnit.TakeDamage(playerUnit_2.damage);
+
+        enemyHUD.SetHP(enemyUnit.currentHP);
+        dialogueText.text = playerUnit_2.unitName + " attacks!";
+        //damage the enemy
+        yield return new WaitForSeconds(1f);
+
+        //Check if enemy is dead
+        if(isDead)
+        {
+            //END BATTLE
+            state = BattleStates.WON;
+            EndBattle();
+            //FOREST
+            if(SceneManager.GetActiveScene().buildIndex == 7)
+            {
+                StartCoroutine(LoadLevel(2));
+            }
+            //LIGHT FOREST
+            if(SceneManager.GetActiveScene().buildIndex == 8)
+            {
+                StartCoroutine(LoadLevel(3));
+            }
+            //DUNGEON
+            if(SceneManager.GetActiveScene().buildIndex == 9)
+            {
+                StartCoroutine(LoadLevel(5));
+            }
+            //yield return new WaitForSeconds(2f);
+            //SceneManager.LoadScene("GameplayScene");
+        }
+        else
+        {
+            state = BattleStates.PLAYER3TURN;
+            StartCoroutine(Player3Turn());
+            // ENEMY TURN
+        }
+        //Change state based on what happened
+    }
+    IEnumerator Player3Attack()
+    {
+        bool isDead = enemyUnit.TakeDamage(playerUnit_3.damage);
+
+        enemyHUD.SetHP(enemyUnit.currentHP);
+        dialogueText.text = playerUnit_3.unitName + " attacks!";
+        //damage the enemy
+        yield return new WaitForSeconds(1f);
+
+        //Check if enemy is dead
+        if(isDead)
+        {
+            //END BATTLE
+            state = BattleStates.WON;
+            EndBattle();
+            //FOREST
+            if(SceneManager.GetActiveScene().buildIndex == 7)
+            {
+                StartCoroutine(LoadLevel(2));
+            }
+            //LIGHT FOREST
+            if(SceneManager.GetActiveScene().buildIndex == 8)
+            {
+                StartCoroutine(LoadLevel(3));
+            }
+            //DUNGEON
+            if(SceneManager.GetActiveScene().buildIndex == 9)
+            {
+                StartCoroutine(LoadLevel(5));
+            }
+            //yield return new WaitForSeconds(2f);
+            //SceneManager.LoadScene("GameplayScene");
+        }
+        else
+        {
+            state = BattleStates.PLAYER4TURN;
+            StartCoroutine(Player4Turn());
+            // ENEMY TURN
+        }
+        //Change state based on what happened
+    }
+    IEnumerator Player4Attack()
+    {
+        bool isDead = enemyUnit.TakeDamage(playerUnit_4.damage);
+
+        enemyHUD.SetHP(enemyUnit.currentHP);
+        dialogueText.text = playerUnit_4.unitName + " attacks!";
+        //damage the enemy
+        yield return new WaitForSeconds(1f);
 
         //Check if enemy is dead
         if(isDead)
@@ -194,17 +483,55 @@ public class BattleSystem : MonoBehaviour
     {
         dialogueText.text = enemyUnit.unitName + " attacks!";
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
-        bool isDead = playerUnit_1.TakeDamage(enemyUnit.damage);
+        int unit = Random.Range(1,5);
+        switch(unit)
+        {
+            case 1: 
+                is1Dead = playerUnit_1.TakeDamage(enemyUnit.damage);
 
-        playerHUD.SetHP(playerUnit_1.currentHP);
+                player1HUD.SetHP(playerUnit_1.currentHP);
 
-        yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1f);
+                break;
 
-        if(isDead)
+            case 2:
+                is2Dead = playerUnit_2.TakeDamage(enemyUnit.damage);
+
+                player2HUD.SetHP(playerUnit_2.currentHP);
+
+                yield return new WaitForSeconds(1f);
+                break;
+            case 3:
+                is3Dead = playerUnit_3.TakeDamage(enemyUnit.damage);
+
+                player3HUD.SetHP(playerUnit_3.currentHP);
+
+                yield return new WaitForSeconds(1f);
+                break;
+            case 4:
+                is4Dead = playerUnit_4.TakeDamage(enemyUnit.damage);
+
+                player4HUD.SetHP(playerUnit_4.currentHP);
+
+                yield return new WaitForSeconds(1f);
+                break;
+        }
+
+        if(is1Dead == true && is2Dead == true && is3Dead == true && is4Dead == true)
+        {
+            allDead = true;
+        }
+        else
+        {
+            allDead = false;
+        }
+
+        if(allDead)
         {
             state = BattleStates.LOST;
+
             EndBattle();
             //FOREST
             if(SceneManager.GetActiveScene().buildIndex == 7)
@@ -226,8 +553,8 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
-            state = BattleStates.PLAYERTURN;
-            PlayerTurn();
+            state = BattleStates.PLAYER1TURN;
+            StartCoroutine(Player1Turn());
         }
     }
 
@@ -235,11 +562,12 @@ public class BattleSystem : MonoBehaviour
     {
         if(state == BattleStates.WON)
         {
-            dialogueText.text = "You won the battle!";
+            dialogueText.text = " Y O U W O N !";
+            GameManager.instance.GrantXP(enemyXP);
         }
         else
         {
-            dialogueText.text = "You were defeated";
+            dialogueText.text = "You were defeated...";
         }
     }
 

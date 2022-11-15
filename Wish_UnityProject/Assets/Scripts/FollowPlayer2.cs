@@ -18,6 +18,7 @@ public class FollowPlayer2 : Mover
     {
         base.Start();
         animator = GetComponent<Animator>();
+        DontDestroyOnLoad(gameObject);
         //lastRecord = frontCharacter.transform.position;
         //UpdateMotor(lastRecord);
     }

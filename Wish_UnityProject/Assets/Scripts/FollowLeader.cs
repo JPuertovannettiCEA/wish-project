@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))] 
 public class FollowLeader : Mover
 {
+    private SpriteRenderer sprite;
     private Animator animator;
 
     public GameObject frontCharacter;
@@ -19,6 +20,8 @@ public class FollowLeader : Mover
     {
         base.Start();
         animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
+        DontDestroyOnLoad(gameObject);
         //lastRecord = frontCharacter.transform.position;
         //UpdateMotor(lastRecord);
     }
@@ -103,5 +106,10 @@ public class FollowLeader : Mover
         animator.SetFloat("MoveY",yLast);
         animator.SetFloat("Speed",new Vector3(xLast,yLast,0).sqrMagnitude);
         
+    }
+
+    public void SwapSprite(int skinID)
+    {
+        sprite.sprite = GameManager.instance.playerSprites[skinID];
     }
 }

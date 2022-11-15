@@ -3034,7 +3034,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hali
+  m_text: 'PLA2
 
 '
   m_isRightToLeft: 0
@@ -3331,7 +3331,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Zeph '
+  m_text: PLA1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8562,6 +8562,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 531645800}
+  - component: {fileID: 531645801}
   m_Layer: 5
   m_Name: Player_4
   m_TagString: Untagged
@@ -8593,6 +8594,21 @@ RectTransform:
   m_AnchoredPosition: {x: -624.99207, y: -105.38722}
   m_SizeDelta: {x: 543.0668, y: 59.4006}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &531645801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531645799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9736225d68b40924fa3896eab10d3011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 1097004527}
+  levelText: {fileID: 1977516586}
+  hpSlider: {fileID: 522487915}
 --- !u!1 &537363861
 GameObject:
   m_ObjectHideFlags: 0
@@ -8651,7 +8667,11 @@ MonoBehaviour:
   playerBattleStation4: {fileID: 1286005546}
   enemyBattleStation: {fileID: 45241364}
   dialogueText: {fileID: 1937693278}
-  playerHUD: {fileID: 1277936914}
+  partyText: {fileID: 1736677511}
+  player1HUD: {fileID: 1277936914}
+  player2HUD: {fileID: 862755236}
+  player3HUD: {fileID: 693000063}
+  player4HUD: {fileID: 531645801}
   enemyHUD: {fileID: 1942750414}
   state: 0
 --- !u!1 &606277383
@@ -9445,6 +9465,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 693000062}
+  - component: {fileID: 693000063}
   m_Layer: 5
   m_Name: Player_3
   m_TagString: Untagged
@@ -9476,6 +9497,21 @@ RectTransform:
   m_AnchoredPosition: {x: -624.99207, y: -39.22612}
   m_SizeDelta: {x: 543.0668, y: 59.4006}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &693000063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693000061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9736225d68b40924fa3896eab10d3011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 1833567294}
+  levelText: {fileID: 1498216006}
+  hpSlider: {fileID: 1366668749}
 --- !u!1 &693224256
 GameObject:
   m_ObjectHideFlags: 0
@@ -10289,6 +10325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 862755235}
+  - component: {fileID: 862755236}
   m_Layer: 5
   m_Name: Player_2
   m_TagString: Untagged
@@ -10320,6 +10357,21 @@ RectTransform:
   m_AnchoredPosition: {x: -624.99207, y: 28.055893}
   m_SizeDelta: {x: 543.0668, y: 59.4006}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &862755236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862755234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9736225d68b40924fa3896eab10d3011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 214293890}
+  levelText: {fileID: 2088869319}
+  hpSlider: {fileID: 1592429575}
 --- !u!1 &864847657
 GameObject:
   m_ObjectHideFlags: 0
@@ -11727,7 +11779,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Brent
+  m_text: PLA4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14323,7 +14375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1557159172
 Animator:
   serializedVersion: 4
@@ -15934,7 +15986,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lee
+  m_text: PLA3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
