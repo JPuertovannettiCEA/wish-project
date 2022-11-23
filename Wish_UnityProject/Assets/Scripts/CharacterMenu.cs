@@ -19,6 +19,21 @@ public class CharacterMenu : MonoBehaviour
     4 - ADREAM
     **/
 
+    public List<Sprite> notActive;
+    /**
+    0 NOT ACTIVE ADREAM
+    1 ACTIVE ADREAM
+    2 NOT ACTIVE LEE
+    3 ACTIVE LEE
+    **/
+
+    public Image AdreamMenu;
+    public Image LeeMenu;
+
+    public bool isAdreamActive;
+
+    public GameObject activePanel;
+
     //Logic
     private int currentCharacterSelection = 0;
     public Image characterSelectionSprite;
@@ -32,6 +47,7 @@ public class CharacterMenu : MonoBehaviour
     private void Start()
     {
         //isPaused = false;
+        activePanel.SetActive(false);
     }
 
     private void Update()
@@ -58,13 +74,14 @@ public class CharacterMenu : MonoBehaviour
     }
 
     // Character Selection
-    public void OnArrowClick()
+    public void OnActiveClick()
     {
-
+        OnSelectionChanged();
     }
 
     public void OnZephClick()
     {
+        activePanel.SetActive(false);
         characterImage.sprite = playerArtwork[0].sprite;
         RectTransform rt = characterImage.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(358.5f, 640.6f);
@@ -76,6 +93,7 @@ public class CharacterMenu : MonoBehaviour
 
     public void OnHaliClick()
     {
+        activePanel.SetActive(false);
         characterImage.sprite = playerArtwork[1].sprite;
         RectTransform rt = characterImage.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(358.5f, 640.6f);
@@ -86,6 +104,7 @@ public class CharacterMenu : MonoBehaviour
     }
     public void OnBrentClick()
     {
+        activePanel.SetActive(false);
         characterImage.sprite = playerArtwork[2].sprite;
         RectTransform rt = characterImage.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(358.5f, 740.6f);
@@ -96,6 +115,14 @@ public class CharacterMenu : MonoBehaviour
     }
     public void OnLeeClick()
     {
+        if(isAdreamActive == true)
+        {
+            activePanel.SetActive(true);
+        }
+        else
+        {
+            activePanel.SetActive(false);
+        }
         characterImage.sprite = playerArtwork[3].sprite;
         RectTransform rt = characterImage.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(358.5f, 640.6f);
@@ -106,6 +133,14 @@ public class CharacterMenu : MonoBehaviour
     }
     public void OnAdreamClick()
     {
+        if(isAdreamActive == false)
+        {
+            activePanel.SetActive(true);
+        }
+        else
+        {
+            activePanel.SetActive(false);
+        }
         characterImage.sprite = playerArtwork[4].sprite;
         RectTransform rt = characterImage.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(200.7f, 640.6f);
@@ -117,7 +152,29 @@ public class CharacterMenu : MonoBehaviour
 
     private void OnSelectionChanged()
     {
-        characterSelectionSprite.sprite = GameManager.instance.playerSprites[currentCharacterSelection];
+        //characterSelectionSprite.sprite = GameManager.instance.playerSprites[currentCharacterSelection];
+        if(isAdreamActive == false)
+        {
+            AdreamMenu.sprite = notActive[1];
+            LeeMenu.sprite = notActive[2];
+            isAdreamActive = true;
+            activePanel.SetActive(false);
+        }
+        else
+        {
+            AdreamMenu.sprite = notActive[0];
+            LeeMenu.sprite = notActive[3];
+            isAdreamActive = false;
+            activePanel.SetActive(false);
+        }
+        //GameManager.instance.player.SwapSprite(currentCharacterSelection);
+    }
+    private void OnLeeSelectionChanged()
+    {
+        //characterSelectionSprite.sprite = GameManager.instance.playerSprites[currentCharacterSelection];
+        AdreamMenu.sprite = notActive[0];
+        LeeMenu.sprite = notActive[3];
+        isAdreamActive = false;
         //GameManager.instance.player.SwapSprite(currentCharacterSelection);
     }
 
