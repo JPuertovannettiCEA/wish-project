@@ -35,4 +35,17 @@ public class Unit : MonoBehaviour
         }
 
     }
+
+    public void OnLevelUp()
+    {
+
+    }
+
+    public void SetLevel(int level)
+    {
+        for(int i = 0; i < level; i++)
+        {
+            OnLevelUp();
+        }
+    }
 }

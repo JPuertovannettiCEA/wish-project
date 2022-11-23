@@ -34,17 +34,4 @@ public class PlayerController : Mover
         animator.SetFloat("Speed",new Vector3(x,y,0).sqrMagnitude);
     }
 
-    public void OnLevelUp()
-    {
-
-    }
-
-    public void SetLevel(int level)
-    {
-        for(int i = 0; i < level; i++)
-        {
-            OnLevelUp();
-        }
-    }
-
 }

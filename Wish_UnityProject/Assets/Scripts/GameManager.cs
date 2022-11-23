@@ -54,10 +54,10 @@ public class GameManager : MonoBehaviour
     **/
 
     // References
-    public PlayerController player;
-    public FollowLeader player2;
-    public FollowPlayer player3;
-    public FollowPlayer2 player4;
+    public GameObject player;
+    public GameObject player2;
+    public GameObject player3;
+    public GameObject player4;
     //public weapon weapon etc
     public FloatingTextManager floatingTextManager;
     public DialogueTextManager dialogue;
@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
     public void OnLevelUp()
     {
         Debug.Log("LEVEL UP");
-        player.OnLevelUp();
+        player.GetComponent<Unit>().OnLevelUp();
     }
     // Save state
     /*
@@ -174,7 +174,7 @@ public class GameManager : MonoBehaviour
         experience = int.Parse(data[2]);
         if(GetCurrentLevel() != 1)
         {
-            player.SetLevel(GetCurrentLevel()); 
+            player.GetComponent<Unit>().SetLevel(GetCurrentLevel()); 
         }
         //weaponlevel = int.Parse(data[3]); 
 
