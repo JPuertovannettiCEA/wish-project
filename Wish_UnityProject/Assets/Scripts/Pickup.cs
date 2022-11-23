@@ -12,8 +12,22 @@ public class Pickup : Collectable
         if(!collected)
         {
             collected = true;
-            GameManager.instance.ShowText("Health Potion!",35,Color.black,transform.position,Vector3.up * 50, 3.0f);
-            for(int i = 0; i < GameManager.instance.inventorySlots.Length; i++)
+            if(CompareTag("RedPotion"))
+            {
+                GameManager.instance.ShowText("Health Potion!",35,Color.black,transform.position,Vector3.up * 50, 3.0f);
+                GameManager.instance.RedPotions++;
+            }
+            if(CompareTag("GreenPotion"))
+            {
+                GameManager.instance.ShowText("Magic Potion!",35,Color.black,transform.position,Vector3.up * 50, 3.0f);
+                GameManager.instance.GreenPotions++;
+            }
+            if(CompareTag("BluePotion"))
+            {
+                GameManager.instance.ShowText("Power Potion!",35,Color.black,transform.position,Vector3.up * 50, 3.0f);
+                GameManager.instance.BluePotions++;
+            }
+            /**for(int i = 0; i < GameManager.instance.inventorySlots.Length; i++)
             {
                 if(GameManager.instance.inventoryisFull[i] == false)
                 {
@@ -22,7 +36,7 @@ public class Pickup : Collectable
                     Instantiate(itemButton, GameManager.instance.inventorySlots[i].transform, false);
                     break;
                 }
-            }
+            }**/
             Destroy(gameObject);
         }
     }

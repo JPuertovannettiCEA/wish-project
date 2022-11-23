@@ -81,6 +81,17 @@ public class BattleSystem : MonoBehaviour
         {
             enemyXP = 10;
         }
+        if(GameManager.instance.isMagicEffect == true)
+        {
+            enemyUnit.damage = enemyUnit.damage / 2;
+        }
+        if(GameManager.instance.isPowerEffect == true)
+        {
+            playerUnit_1.damage = playerUnit_1.damage * 2;
+            playerUnit_2.damage = playerUnit_2.damage * 2;
+            playerUnit_3.damage = playerUnit_3.damage * 2;
+            playerUnit_4.damage = playerUnit_4.damage * 2;
+        }
         state = BattleStates.START;
         StartCoroutine(SetupBattle());
     }
@@ -568,6 +579,14 @@ public class BattleSystem : MonoBehaviour
         else
         {
             dialogueText.text = "You were defeated...";
+        }
+        if(GameManager.instance.isMagicEffect == true)
+        {
+            GameManager.instance.isMagicEffect = false;
+        }
+        if(GameManager.instance.isPowerEffect == true)
+        {
+            GameManager.instance.isPowerEffect = false;
         }
     }
 

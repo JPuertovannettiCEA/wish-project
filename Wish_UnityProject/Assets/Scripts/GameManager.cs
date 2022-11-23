@@ -30,9 +30,28 @@ public class GameManager : MonoBehaviour
 
     // Resources
     public List<Sprite> playerSprites;
+    /**
+    0 ZEPH
+    1 HALI
+    2 BRENT
+    3 LEE
+    4 ADREAM
+    **/
     public List<Sprite> itemSprites;
+    /**
+    0 HEALTH POTION
+    1 MAGIC POTION
+    2 POWER POTION
+    **/
     //public List<int> weaponPrices;
     public List<int> xpTable; 
+    /**
+    50 = 1st SKILL
+    80 = 2nd SKILL
+    100 = 3rd SKILL
+    150 = 4th SKILL
+    300 = 5th SKILL
+    **/
 
     // References
     public PlayerController player;
@@ -45,9 +64,21 @@ public class GameManager : MonoBehaviour
 
     // Logic
     public int money;
-    public int experience; 
-    public bool[] inventoryisFull;
-    public GameObject[] inventorySlots;
+    public int experience;
+    public int experience1;
+    public int experience2;
+    public int experience3;
+    public int experience4;
+
+    public bool isMagicEffect;
+    public bool isPowerEffect;
+
+    //INVENTORY
+    public int RedPotions; 
+    public int GreenPotions; 
+    public int BluePotions; 
+    //public bool[] inventoryisFull;
+    //public GameObject[] inventorySlots;
 
     //FloatingText
     public void ShowText(string msg, int fontSize, Color color, Vector3 pos, Vector3 motion, float duration)

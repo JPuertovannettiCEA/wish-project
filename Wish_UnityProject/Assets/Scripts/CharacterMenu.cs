@@ -7,12 +7,12 @@ using TMPro;
 public class CharacterMenu : MonoBehaviour
 {
     // TEXT FIELDS
-    public TMP_Text healthText, levelText, description, useitemText, xpText;
+    public TMP_Text healthText, levelText, description, useitemText, xpText, itemText, itemQuantText1, itemQuantText2, itemQuantText3;
 
     //Logic
     private int currentCharacterSelection = 0;
     public Image characterSelectionSprite;
-    public Image itemSprite;
+    //public Image itemSprite;
     public RectTransform xpBar;
 
     // Character Selection
@@ -28,17 +28,71 @@ public class CharacterMenu : MonoBehaviour
     }
 
     // Item usage
-    public void OnItemClick()
+    public void OnRedPotionUseClick()
     {
-        // REFERENCE THE ITEM 
+        if(GameManager.instance.RedPotions > 0)
+        {
+            // Health Increase
+            GameManager.instance.RedPotions--;
+            UpdateMenu();
+            itemText.text = "The team feels healthy!";
+        }
+        else
+        {
+            itemText.text = " You don't have more potions to use! ";
+        }
+    }
+    public void OnRedPotionClick()
+    {
+        itemText.text = "This is the red potion, it can replenish the health to all the team by 10!";
+    }
+    public void OnGreenPotionUseClick()
+    {
+        if(GameManager.instance.GreenPotions > 0)
+        {
+            // Magic Increase
+            GameManager.instance.isMagicEffect = true;
+            GameManager.instance.GreenPotions--;
+            UpdateMenu();
+            itemText.text = "Damage received decreased for the next battle!";
+        }
+        else
+        {
+            itemText.text = " You don't have more potions to use! ";
+        }
+    }
+    public void OnGreenPotionClick()
+    {
+        itemText.text = "This is the green potion, it doubles the defense (half damage received) of the team! Only for the next battle";
+    }
+    public void OnBluePotionUseClick()
+    {
+        if(GameManager.instance.BluePotions > 0)
+        {
+            // Power Increase
+            GameManager.instance.isPowerEffect = true;
+            GameManager.instance.BluePotions--;
+            UpdateMenu();
+            itemText.text = "The team feels more powerful for the next battle!";
+        }
+        else
+        {
+            itemText.text = " You don't have more potions to use! ";
+        }
+    }
+    public void OnBluePotionClick()
+    {
+        itemText.text = "This is the blue potion, it doubles the power of the team! Only for the next battle";
     }
 
     //Update character information 
 
     public void UpdateMenu()
     {
-        
-
+        itemText.text = " ";
+        itemQuantText1.text = "x" + GameManager.instance.RedPotions;
+        itemQuantText2.text = "x" + GameManager.instance.GreenPotions;
+        itemQuantText3.text = "x" + GameManager.instance.BluePotions;
         levelText.text = GameManager.instance.GetCurrentLevel().ToString();
         //hitpointText.text = GameManager.instance.player.hitPoint.ToString();
         
