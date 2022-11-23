@@ -17,6 +17,8 @@ public class StatusMenu : MonoBehaviour
 
     public Animator statusAnim;
 
+    private bool isStatus;
+
     //CHARACTER IMAGES
     public Image PORT1;
     public Image PORT2;
@@ -115,15 +117,28 @@ public class StatusMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.X))
         {
-            statusAnim.SetTrigger("Show");
-            UpdateStatus();
+            if(!isStatus)
+            {
+                statusAnim.SetTrigger("Show");
+                UpdateStatus();
+            }
+            else
+            {
+               statusAnim.SetTrigger("Hide"); 
+            }
+            isStatus = !isStatus;
         }
-        if(GameManager.instance.player.GetComponent<PlayerController>().x > 0 || GameManager.instance.player.GetComponent<PlayerController>().x < 0 || GameManager.instance.player.GetComponent<PlayerController>().y > 0 || GameManager.instance.player.GetComponent<PlayerController>().y < 0)
+        if(GameManager.instance.isPaused == true && isStatus == true)
         {
+            isStatus = false;
             statusAnim.SetTrigger("Hide");
         }
+        /**if(GameManager.instance.player.GetComponent<PlayerController>().x > 0 || GameManager.instance.player.GetComponent<PlayerController>().x < 0 || GameManager.instance.player.GetComponent<PlayerController>().y > 0 || GameManager.instance.player.GetComponent<PlayerController>().y < 0)
+        {
+            statusAnim.SetTrigger("Hide");
+        }**/
         
     }
 

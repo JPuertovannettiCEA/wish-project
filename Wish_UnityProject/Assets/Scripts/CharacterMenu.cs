@@ -8,6 +8,16 @@ public class CharacterMenu : MonoBehaviour
 {
     // TEXT FIELDS
     public TMP_Text healthText, levelText, description, useitemText, xpText, itemText, itemQuantText1, itemQuantText2, itemQuantText3;
+    public Image characterImage;
+
+    public List<Image> playerArtwork;
+    /**
+    0 - ZEPH
+    1 - HALI
+    2 - BRENT 
+    3 - LEE
+    4 - ADREAM
+    **/
 
     //Logic
     private int currentCharacterSelection = 0;
@@ -15,10 +25,94 @@ public class CharacterMenu : MonoBehaviour
     //public Image itemSprite;
     public RectTransform xpBar;
 
+    public Animator anim;
+
+    private bool isPaused;
+
+    private void Start()
+    {
+        //isPaused = false;
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if(!isPaused)
+            {
+                //isPaused = true;
+                GameManager.instance.isPaused = true;
+                anim.GetComponent<Animator>().SetTrigger("Show");
+                UpdateMenu();
+                GameManager.instance.player.GetComponent<PlayerController>().enabled = false;
+            }
+            else
+            {
+                GameManager.instance.isPaused = false;
+                anim.GetComponent<Animator>().SetTrigger("Hide");
+                GameManager.instance.player.GetComponent<PlayerController>().enabled = true;
+            }
+            isPaused = !isPaused;
+        }
+
+    }
+
     // Character Selection
     public void OnArrowClick()
     {
 
+    }
+
+    public void OnZephClick()
+    {
+        characterImage.sprite = playerArtwork[0].sprite;
+        RectTransform rt = characterImage.GetComponent<RectTransform>();
+        rt.sizeDelta = new Vector2(358.5f, 640.6f);
+        rt.anchoredPosition = new Vector2(0f,rt.anchoredPosition.y);
+        healthText.text = GameManager.instance.player.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player.GetComponent<Unit>().maxHP;
+        levelText.text = GameManager.instance.player.GetComponent<Unit>().unitLevel.ToString();
+        description.text = "The lead one!";
+    }
+
+    public void OnHaliClick()
+    {
+        characterImage.sprite = playerArtwork[1].sprite;
+        RectTransform rt = characterImage.GetComponent<RectTransform>();
+        rt.sizeDelta = new Vector2(358.5f, 640.6f);
+        rt.anchoredPosition = new Vector2(0f,rt.anchoredPosition.y);
+        healthText.text = GameManager.instance.player2.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player2.GetComponent<Unit>().maxHP;
+        levelText.text = GameManager.instance.player2.GetComponent<Unit>().unitLevel.ToString();
+        description.text = "The happy one!";
+    }
+    public void OnBrentClick()
+    {
+        characterImage.sprite = playerArtwork[2].sprite;
+        RectTransform rt = characterImage.GetComponent<RectTransform>();
+        rt.sizeDelta = new Vector2(358.5f, 740.6f);
+        rt.anchoredPosition = new Vector2(0f,rt.anchoredPosition.y);
+        healthText.text = GameManager.instance.player3.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player3.GetComponent<Unit>().maxHP;
+        levelText.text = GameManager.instance.player3.GetComponent<Unit>().unitLevel.ToString();
+        description.text = "The rough one!";
+    }
+    public void OnLeeClick()
+    {
+        characterImage.sprite = playerArtwork[3].sprite;
+        RectTransform rt = characterImage.GetComponent<RectTransform>();
+        rt.sizeDelta = new Vector2(358.5f, 640.6f);
+        rt.anchoredPosition = new Vector2(0f,rt.anchoredPosition.y);
+        healthText.text = GameManager.instance.player4.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player4.GetComponent<Unit>().maxHP;
+        levelText.text = GameManager.instance.player4.GetComponent<Unit>().unitLevel.ToString();
+        description.text = "The mischievous one!";
+    }
+    public void OnAdreamClick()
+    {
+        characterImage.sprite = playerArtwork[4].sprite;
+        RectTransform rt = characterImage.GetComponent<RectTransform>();
+        rt.sizeDelta = new Vector2(200.7f, 640.6f);
+        rt.anchoredPosition = new Vector2(80f,rt.anchoredPosition.y);
+        healthText.text = GameManager.instance.player.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player.GetComponent<Unit>().maxHP;
+        levelText.text = GameManager.instance.player.GetComponent<Unit>().unitLevel.ToString();
+        description.text = "The timid one!";
     }
 
     private void OnSelectionChanged()
@@ -89,11 +183,19 @@ public class CharacterMenu : MonoBehaviour
 
     public void UpdateMenu()
     {
+        //GameManager.instance.player.GetComponent<PlayerController>().enabled = false;
         itemText.text = " ";
         itemQuantText1.text = "x" + GameManager.instance.RedPotions;
         itemQuantText2.text = "x" + GameManager.instance.GreenPotions;
         itemQuantText3.text = "x" + GameManager.instance.BluePotions;
-        levelText.text = GameManager.instance.GetCurrentLevel().ToString();
+        characterImage.sprite = playerArtwork[0].sprite;
+        RectTransform rt = characterImage.GetComponent<RectTransform>();
+        rt.sizeDelta = new Vector2(358.5f, 640.6f);
+        rt.anchoredPosition = new Vector2(0f,rt.anchoredPosition.y);
+        healthText.text = GameManager.instance.player.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player.GetComponent<Unit>().maxHP;
+        levelText.text = GameManager.instance.player.GetComponent<Unit>().unitLevel.ToString();
+        description.text = "The lead one!";
+
         //hitpointText.text = GameManager.instance.player.hitPoint.ToString();
         
         // xp Bar

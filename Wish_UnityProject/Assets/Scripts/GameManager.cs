@@ -62,6 +62,10 @@ public class GameManager : MonoBehaviour
     public FloatingTextManager floatingTextManager;
     public DialogueTextManager dialogue;
 
+    public bool isPaused;
+
+    //public CharacterMenu pauseMenu;
+
     // Logic
     public int money;
     public int experience;
