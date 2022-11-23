@@ -28,10 +28,10 @@ public class StatusMenu : MonoBehaviour
     public TMP_Text levelPlayer2, healthPlayer2, nameplayer2;
     public TMP_Text levelPlayer3, healthPlayer3, nameplayer3;
     public TMP_Text levelPlayer4, healthPlayer4, nameplayer4;
-    public RectTransform xpBar1;
-    public RectTransform xpBar2;
-    public RectTransform xpBar3;
-    public RectTransform xpBar4;
+    public Slider xpBar1;
+    public Slider xpBar2;
+    public Slider xpBar3;
+    public Slider xpBar4;
 
     private void Start()
     {
@@ -46,6 +46,8 @@ public class StatusMenu : MonoBehaviour
         {
             PORT1.sprite = playerSprites[0].sprite;
         }
+        xpBar1.maxValue = GameManager.instance.player.GetComponent<Unit>().maxHP;
+        xpBar1.value = GameManager.instance.player.GetComponent<Unit>().currentHP;
 
         //PLAYER 2
         if(GameManager.instance.player2.GetComponent<Unit>().unitName == "Hali")
@@ -64,6 +66,8 @@ public class StatusMenu : MonoBehaviour
         {
             PORT2.sprite = playerSprites[4].sprite;
         }
+        xpBar2.maxValue = GameManager.instance.player2.GetComponent<Unit>().maxHP;
+        xpBar2.value = GameManager.instance.player2.GetComponent<Unit>().currentHP;
 
         //PLAYER 3
         if(GameManager.instance.player3.GetComponent<Unit>().unitName == "Hali")
@@ -82,6 +86,8 @@ public class StatusMenu : MonoBehaviour
         {
             PORT3.sprite = playerSprites[4].sprite;
         }
+        xpBar3.maxValue = GameManager.instance.player3.GetComponent<Unit>().maxHP;
+        xpBar3.value = GameManager.instance.player3.GetComponent<Unit>().currentHP;
 
         //PLAYER 4
         if(GameManager.instance.player4.GetComponent<Unit>().unitName == "Hali")
@@ -100,6 +106,9 @@ public class StatusMenu : MonoBehaviour
         {
             PORT4.sprite = playerSprites[4].sprite;
         }
+        xpBar4.maxValue = GameManager.instance.player4.GetComponent<Unit>().maxHP;
+        xpBar4.value = GameManager.instance.player4.GetComponent<Unit>().currentHP;
+
         statusAnim = GetComponent<Animator>();
     }
 
@@ -123,41 +132,22 @@ public class StatusMenu : MonoBehaviour
         nameplayer1.text = GameManager.instance.player.GetComponent<Unit>().unitName;
         levelPlayer1.text = "LEVEL: " + GameManager.instance.player.GetComponent<Unit>().unitLevel;
         healthPlayer1.text = "HEALTH: " + GameManager.instance.player.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player.GetComponent<Unit>().maxHP;
-        /**
-        if(GameManager.instance.player.GetComponent<Unit>().currentHP == GameManager.instance.player.GetComponent<Unit>().maxHP)
-        {
-            xpBar1.localScale = Vector3.one;
-        }
-        else
-        {
-            int maxHP = GameManager.instance.player.GetComponent<Unit>().maxHP;
-            int currHP = GameManager.instance.player.GetComponent<Unit>().currentHP;
-            int diff = currHP - maxHP;
-            //float completionRatio = (float)
-            //xpBar1.localScale = new Vector3(completionRatio, 1, 1);
-            /**
-            int prevLevelXP = GameManager.instance.GetXpToLevel(currLevel - 1);
-            int currLevelXP = GameManager.instance.GetXpToLevel(currLevel);
-            **/
-            //int diff = currLevelXP - prevLevelXP;
-            /**int currXPIntoLevel = GameManager.instance.experience = prevLevelXP;
+        xpBar1.value = GameManager.instance.player.GetComponent<Unit>().currentHP;
 
-            float completionRatio = (float)currXPIntoLevel / (float)diff;
-            xpBar.localScale = new Vector3(completionRatio, 1, 1);
-            xpText.text = currXPIntoLevel.ToString() + " / " + diff;
-        }**/
-        
         nameplayer2.text = GameManager.instance.player2.GetComponent<Unit>().unitName;
         levelPlayer2.text = "LEVEL: " + GameManager.instance.player2.GetComponent<Unit>().unitLevel;
         healthPlayer2.text = "HEALTH: " + GameManager.instance.player2.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player2.GetComponent<Unit>().maxHP;
+        xpBar2.value = GameManager.instance.player2.GetComponent<Unit>().currentHP;
 
         nameplayer3.text = GameManager.instance.player3.GetComponent<Unit>().unitName;
         levelPlayer3.text = "LEVEL: " + GameManager.instance.player3.GetComponent<Unit>().unitLevel;
         healthPlayer3.text = "HEALTH: " + GameManager.instance.player3.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player3.GetComponent<Unit>().maxHP;
+        xpBar3.value = GameManager.instance.player3.GetComponent<Unit>().currentHP;
 
         nameplayer4.text = GameManager.instance.player4.GetComponent<Unit>().unitName;
         levelPlayer4.text = "LEVEL: " + GameManager.instance.player4.GetComponent<Unit>().unitLevel;
         healthPlayer4.text = "HEALTH: " + GameManager.instance.player4.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player4.GetComponent<Unit>().maxHP;
+        xpBar4.value = GameManager.instance.player4.GetComponent<Unit>().currentHP;
 
     }
 }
