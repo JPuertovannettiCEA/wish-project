@@ -245,7 +245,6 @@ public class CharacterMenu : MonoBehaviour
             isAdreamActive = false;
             AdreamMenu.sprite = notActive[0];
             LeeMenu.sprite = notActive[3];
-
         }
         else //ADREAM IS TRUE
         {

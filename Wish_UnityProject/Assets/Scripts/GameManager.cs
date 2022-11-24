@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
         //PlayerPrefs.DeleteAll();
         instance = this;
         SceneManager.sceneLoaded += LoadState;
+        hasSwitched = true;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -454,13 +455,13 @@ public class GameManager : MonoBehaviour
                 {
                     //enemyPos = GameObject.Find("Enemy").transform;
                     //GameObject.Find("Enemy").GetComponent<EnemyHitBox>().enabled = false;
-                    player.GetComponent<PlayerController>().enabled = true;
                     Destroy(GameObject.Find("Enemy"));
                     isMonsterDefeated = false;
                 }
                 //GAMEPLAY SCENE MAIN
                 if(SceneManager.GetActiveScene().buildIndex == 2)
                 {
+                    player.GetComponent<PlayerController>().enabled = true;
                     player.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
                     player2.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
                     player3.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
@@ -484,6 +485,7 @@ public class GameManager : MonoBehaviour
                 //ROUTE 2
                 if(SceneManager.GetActiveScene().buildIndex == 4)
                 {
+                    player.GetComponent<PlayerController>().enabled = true;
                     player.transform.position = GameObject.Find("SpawnPoint_Main").transform.position;
                     player2.transform.position = GameObject.Find("SpawnPoint_Main").transform.position;
                     player3.transform.position = GameObject.Find("SpawnPoint_Main").transform.position;
@@ -507,6 +509,7 @@ public class GameManager : MonoBehaviour
                 //ROUTE 3
                 if(SceneManager.GetActiveScene().buildIndex == 6)
                 {
+                    player.GetComponent<PlayerController>().enabled = true;
                     player.transform.position = GameObject.Find("SpawnPoint_Route2_Forest_Route3").transform.position;
                     player2.transform.position = GameObject.Find("SpawnPoint_Route2_Forest_Route3").transform.position;
                     player3.transform.position = GameObject.Find("SpawnPoint_Route2_Forest_Route3").transform.position;
