@@ -116,6 +116,8 @@ public class BattleSystem : MonoBehaviour
         }
 
         GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+        enemyGO.GetComponent<Enemy>().enabled = false;
+        enemyGO.GetComponent<EnemyHitBox>().enabled = false;
         enemyUnit = enemyGO.GetComponent<Unit>();
 
         if(GameManager.instance.isMagicEffect == true)
@@ -271,16 +273,34 @@ public class BattleSystem : MonoBehaviour
         //FOREST
         if(SceneManager.GetActiveScene().buildIndex == 7)
         {
-            StartCoroutine(LoadLevel(2));
+            //GameManager.instance.isMonsterDefeated = true;
+            GameManager.instance.SaveState();
+            string prevScene = LevelCheck.PreviousLevel;
+            switch(prevScene)
+            {
+                case "GameplayScene":
+                StartCoroutine(LoadLevel(2));
+                break;
+                case "GameplayScene_Route2":
+                StartCoroutine(LoadLevel(4));
+                break;
+                case "GameplayScene_Route3":
+                StartCoroutine(LoadLevel(6));
+                break;
+            }
         }
         //LIGHT FOREST
         if(SceneManager.GetActiveScene().buildIndex == 8)
         {
+            GameManager.instance.isMonsterDefeated = true;
+            GameManager.instance.SaveState();
             StartCoroutine(LoadLevel(3));
         }
         //DUNGEON
         if(SceneManager.GetActiveScene().buildIndex == 9)
         {
+            GameManager.instance.isMonsterDefeated = true;
+            GameManager.instance.SaveState();
             StartCoroutine(LoadLevel(5));
         }
         //SceneManager.LoadScene("GameplayScene");
@@ -363,7 +383,19 @@ public class BattleSystem : MonoBehaviour
             //FOREST
             if(SceneManager.GetActiveScene().buildIndex == 7)
             {
-                StartCoroutine(LoadLevel(2));
+                string prevScene = LevelCheck.PreviousLevel;
+                switch(prevScene)
+                {
+                    case "GameplayScene":
+                    StartCoroutine(LoadLevel(2));
+                    break;
+                    case "GameplayScene_Route2":
+                    StartCoroutine(LoadLevel(4));
+                    break;
+                    case "GameplayScene_Route3":
+                    StartCoroutine(LoadLevel(6));
+                    break;
+                }
             }
             //LIGHT FOREST
             if(SceneManager.GetActiveScene().buildIndex == 8)
@@ -404,7 +436,19 @@ public class BattleSystem : MonoBehaviour
             //FOREST
             if(SceneManager.GetActiveScene().buildIndex == 7)
             {
-                StartCoroutine(LoadLevel(2));
+                string prevScene = LevelCheck.PreviousLevel;
+                switch(prevScene)
+                {
+                    case "GameplayScene":
+                    StartCoroutine(LoadLevel(2));
+                    break;
+                    case "GameplayScene_Route2":
+                    StartCoroutine(LoadLevel(4));
+                    break;
+                    case "GameplayScene_Route3":
+                    StartCoroutine(LoadLevel(6));
+                    break;
+                }
             }
             //LIGHT FOREST
             if(SceneManager.GetActiveScene().buildIndex == 8)
@@ -445,7 +489,19 @@ public class BattleSystem : MonoBehaviour
             //FOREST
             if(SceneManager.GetActiveScene().buildIndex == 7)
             {
-                StartCoroutine(LoadLevel(2));
+                string prevScene = LevelCheck.PreviousLevel;
+                switch(prevScene)
+                {
+                    case "GameplayScene":
+                    StartCoroutine(LoadLevel(2));
+                    break;
+                    case "GameplayScene_Route2":
+                    StartCoroutine(LoadLevel(4));
+                    break;
+                    case "GameplayScene_Route3":
+                    StartCoroutine(LoadLevel(6));
+                    break;
+                }
             }
             //LIGHT FOREST
             if(SceneManager.GetActiveScene().buildIndex == 8)
@@ -486,7 +542,19 @@ public class BattleSystem : MonoBehaviour
             //FOREST
             if(SceneManager.GetActiveScene().buildIndex == 7)
             {
-                StartCoroutine(LoadLevel(2));
+                string prevScene = LevelCheck.PreviousLevel;
+                switch(prevScene)
+                {
+                    case "GameplayScene":
+                    StartCoroutine(LoadLevel(2));
+                    break;
+                    case "GameplayScene_Route2":
+                    StartCoroutine(LoadLevel(4));
+                    break;
+                    case "GameplayScene_Route3":
+                    StartCoroutine(LoadLevel(6));
+                    break;
+                }
             }
             //LIGHT FOREST
             if(SceneManager.GetActiveScene().buildIndex == 8)
@@ -562,12 +630,25 @@ public class BattleSystem : MonoBehaviour
         if(allDead)
         {
             state = BattleStates.LOST;
-
             EndBattle();
+            StartCoroutine(LoadLevel(11)); //GAME OVER
+            /**
             //FOREST
             if(SceneManager.GetActiveScene().buildIndex == 7)
             {
-                StartCoroutine(LoadLevel(2));
+                string prevScene = LevelCheck.PreviousLevel;
+                switch(prevScene)
+                {
+                    case "GameplayScene":
+                    StartCoroutine(LoadLevel(2));
+                    break;
+                    case "GameplayScene_Route2":
+                    StartCoroutine(LoadLevel(4));
+                    break;
+                    case "GameplayScene_Route3":
+                    StartCoroutine(LoadLevel(6));
+                    break;
+                }
             }
             //LIGHT FOREST
             if(SceneManager.GetActiveScene().buildIndex == 8)
@@ -581,6 +662,7 @@ public class BattleSystem : MonoBehaviour
             }
             //yield return new WaitForSeconds(2f);
             //SceneManager.LoadScene("GameplayScene");
+            **/
         }
         else
         {
@@ -596,13 +678,13 @@ public class BattleSystem : MonoBehaviour
         {
             dialogueText.text = " Y O U W O N !";
             //GameManager.instance.player.GetComponent<PlayerController>().enabled = true;
-            GameManager.instance.isMonsterDefeated = true;
             GameManager.instance.GrantXP(enemyXP);
+            GameManager.instance.isMonsterDefeated = true;
         }
         else
         {
             //GameManager.instance.player.GetComponent<PlayerController>().enabled = true;
-            GameManager.instance.isMonsterDefeated = true;
+            //GameManager.instance.isMonsterDefeated = true;
             dialogueText.text = "You were defeated...";
         }
         if(GameManager.instance.isMagicEffect == true)
@@ -613,6 +695,7 @@ public class BattleSystem : MonoBehaviour
         {
             GameManager.instance.isPowerEffect = false;
         }
+        GameManager.instance.SaveState();
     }
 
     IEnumerator LoadLevel(int levelIndex)

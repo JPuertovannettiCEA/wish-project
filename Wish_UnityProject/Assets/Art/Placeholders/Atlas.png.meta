@@ -736,7 +736,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -744,6 +744,48 @@ TextureImporter:
       bones: []
       spriteID: 495c1d559a359624bbdaca2281748ee6
       internalID: -961017646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_light_0
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 79
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbd76ff53d19b75408f73f921cf0c528
+      internalID: -2007219722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_dungeon_0
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 48
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90e22e8fe4e3f344fb959b81f99d832a
+      internalID: -112995361
       vertices: []
       indices: 
       edges: []
@@ -766,7 +808,9 @@ TextureImporter:
       Fade_down_0: -2060822406
       Fade_down_1: 1612253071
       wall_0: -1626637684
+      enemy_dungeon_0: -112995361
       Player_Placeholder_1: 1244914969
+      enemy_light_0: -2007219722
       Fade_Right_1: 329927664
       Fade_Side_Left_3: -182417549
       Fade_Side_Left_2: 150158822

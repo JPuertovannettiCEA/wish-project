@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
         instance = this;
         SceneManager.sceneLoaded += LoadState;
         hasSwitched = true;
+        Enemy = GameObject.Find("Enemy_Forest");
+        Enemy = GameObject.Find("Enemy_LightForest");
+        Enemy = GameObject.Find("Enemy_Dungeon");
         DontDestroyOnLoad(gameObject);
     }
 
@@ -99,7 +102,7 @@ public class GameManager : MonoBehaviour
     //public weapon weapon etc
     public FloatingTextManager floatingTextManager;
     public DialogueTextManager dialogue;
-    public Transform enemyPos;
+    public GameObject Enemy;
     public bool isEnemyPos;
 
     public bool isPaused;
@@ -266,6 +269,8 @@ public class GameManager : MonoBehaviour
             break;
             //FROM ROUTE 1
             case "GameplayScene_Route1":
+            if(GameObject.Find("SpawnPoint_Route1"))
+            {
                 player.transform.position = GameObject.Find("SpawnPoint_Route1").transform.position;
                 player2.transform.position = GameObject.Find("SpawnPoint_Route1").transform.position;
                 player3.transform.position = GameObject.Find("SpawnPoint_Route1").transform.position;
@@ -285,6 +290,7 @@ public class GameManager : MonoBehaviour
                     player5.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
+            }
             break;
             //FROM ROUTE 2
             case "GameplayScene_Route2":
@@ -404,6 +410,8 @@ public class GameManager : MonoBehaviour
             break;
             //FROM ROUTE 3
             case "GameplayScene_Route3":
+            if(GameObject.Find("SpawnPoint_Route3"))
+            {
                 player.transform.position = GameObject.Find("SpawnPoint_Route3").transform.position;
                 player2.transform.position = GameObject.Find("SpawnPoint_Route3").transform.position;
                 player3.transform.position = GameObject.Find("SpawnPoint_Route3").transform.position;
@@ -423,6 +431,7 @@ public class GameManager : MonoBehaviour
                     player5.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
+            }
             break;
             //FROM DUNGEON
             case "GameplayScene_Route2_Dungeon":
@@ -453,9 +462,7 @@ public class GameManager : MonoBehaviour
             case "BattleSceneForest":
                 if(isMonsterDefeated == true)
                 {
-                    //enemyPos = GameObject.Find("Enemy").transform;
-                    //GameObject.Find("Enemy").GetComponent<EnemyHitBox>().enabled = false;
-                    Destroy(GameObject.Find("Enemy"));
+                    Destroy(GameObject.Find("Enemy_Forest"));
                     isMonsterDefeated = false;
                 }
                 //GAMEPLAY SCENE MAIN
@@ -534,12 +541,18 @@ public class GameManager : MonoBehaviour
             break;
             //FROM LIGHT FOREST BATTLE
             case "BattleSceneLightForest":
-                player.transform.position = enemyPos.position;
-                player2.transform.position = enemyPos.position;
-                player3.transform.position = enemyPos.position;
+                if(isMonsterDefeated == true)
+                {
+                    Destroy(GameObject.Find("Enemy_LightForest"));
+                    isMonsterDefeated = false;
+                }
+                player.GetComponent<PlayerController>().enabled = true;
+                player.transform.position = GameObject.Find("SpawnPoint").transform.position;
+                player2.transform.position = GameObject.Find("SpawnPoint").transform.position;
+                player3.transform.position = GameObject.Find("SpawnPoint").transform.position;
                 if(isAdreamActive == true)
                 {
-                    player5.transform.position = enemyPos.position;
+                    player5.transform.position = GameObject.Find("SpawnPoint").transform.position;
                     player5.GetComponent<FollowPlayer2>().enabled = true;
                     player4.transform.position = new Vector3(100f,100f,0f);
                     player4.GetComponent<FollowPlayer2>().enabled = false;
@@ -547,7 +560,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    player4.transform.position = enemyPos.position;
+                    player4.transform.position = GameObject.Find("SpawnPoint").transform.position;
                     player4.GetComponent<FollowPlayer2>().enabled = true;
                     player5.transform.position = new Vector3(100f,100f,0f);
                     player5.GetComponent<FollowPlayer2>().enabled = false;
@@ -556,12 +569,18 @@ public class GameManager : MonoBehaviour
             break;
             //FROM DUNGEON BATTLE
             case "BattleSceneDungeon":
-                player.transform.position = enemyPos.position;
-                player2.transform.position = enemyPos.position;
-                player3.transform.position = enemyPos.position;
+                if(isMonsterDefeated == true)
+                {
+                    Destroy(GameObject.Find("Enemy_Dungeon"));
+                    isMonsterDefeated = false;
+                }
+                player.GetComponent<PlayerController>().enabled = true;
+                player.transform.position = GameObject.Find("SpawnPoint_Route2_Forest").transform.position;
+                player2.transform.position = GameObject.Find("SpawnPoint_Route2_Forest").transform.position;
+                player3.transform.position = GameObject.Find("SpawnPoint_Route2_Forest").transform.position;
                 if(isAdreamActive == true)
                 {
-                    player5.transform.position = enemyPos.position;
+                    player5.transform.position = GameObject.Find("SpawnPoint_Route2_Forest").transform.position;
                     player5.GetComponent<FollowPlayer2>().enabled = true;
                     player4.transform.position = new Vector3(100f,100f,0f);
                     player4.GetComponent<FollowPlayer2>().enabled = false;
@@ -569,7 +588,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    player4.transform.position = enemyPos.position;
+                    player4.transform.position = GameObject.Find("SpawnPoint_Route2_Forest").transform.position;
                     player4.GetComponent<FollowPlayer2>().enabled = true;
                     player5.transform.position = new Vector3(100f,100f,0f);
                     player5.GetComponent<FollowPlayer2>().enabled = false;
