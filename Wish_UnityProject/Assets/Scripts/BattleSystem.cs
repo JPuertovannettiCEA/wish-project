@@ -88,6 +88,12 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
+        GameManager.instance.player.transform.position = new Vector3(100f,100f,0);
+        GameManager.instance.player2.transform.position = new Vector3(100f,100f,0);
+        GameManager.instance.player3.transform.position = new Vector3(100f,100f,0);
+        GameManager.instance.player4.transform.position = new Vector3(100f,100f,0);
+        GameManager.instance.player5.transform.position = new Vector3(100f,100f,0);
+        GameManager.instance.player.GetComponent<PlayerController>().enabled = false;
         GameObject playerGO_1 = Instantiate(playerPrefab1, playerBattleStation1);
         playerUnit_1 = GameManager.instance.player.GetComponent<Unit>();
         GameObject playerGO_2 = Instantiate(playerPrefab2, playerBattleStation2);
@@ -588,10 +594,14 @@ public class BattleSystem : MonoBehaviour
         if(state == BattleStates.WON)
         {
             dialogueText.text = " Y O U W O N !";
+            GameManager.instance.player.GetComponent<PlayerController>().enabled = false;
+            GameManager.instance.isMonsterDefeated = true;
             GameManager.instance.GrantXP(enemyXP);
         }
         else
         {
+            GameManager.instance.player.GetComponent<PlayerController>().enabled = false;
+            GameManager.instance.isMonsterDefeated = true;
             dialogueText.text = "You were defeated...";
         }
         if(GameManager.instance.isMagicEffect == true)

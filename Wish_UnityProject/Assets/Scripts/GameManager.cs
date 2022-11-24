@@ -59,6 +59,12 @@ public class GameManager : MonoBehaviour
             }
             //player4.SetActive(true);
         }
+
+        if(isMonsterDefeated == true)
+        {
+            Destroy(GameObject.Find("Enemy"));
+            isMonsterDefeated = false;
+        }
     }
 
     // Resources
@@ -113,6 +119,8 @@ public class GameManager : MonoBehaviour
 
     public bool isMagicEffect;
     public bool isPowerEffect;
+
+    public bool isMonsterDefeated;
 
     //INVENTORY
     public int RedPotions; 
