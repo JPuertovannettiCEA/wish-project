@@ -9,11 +9,11 @@ public class DialogueTextManager : MonoBehaviour
     public TMP_Text nameText;
     public TMP_Text dialogueText;
 
-    public TMPro.TMP_FontAsset fontAsset;
+    //public TMPro.TMP_FontAsset fontAsset;
 
     public Image avatar;
 
-    public Image NPC;
+    //public Image NPC;
     private Queue<string> sentences;
 
     public bool isColliding = false;
@@ -25,12 +25,16 @@ public class DialogueTextManager : MonoBehaviour
         //avatar = NPC;
     }
 
-    public void StartDialogue(DialogueText dialogue, TMPro.TMP_FontAsset font)
+    public void StartDialogue(DialogueText dialogue, TMPro.TMP_FontAsset font, GameObject NPC)
     {
         animator.SetBool("isOpen",true);
         //Debug.Log("Starting conversation with" + dialogue.name);
         isColliding = true;
-        avatar.sprite = NPC.sprite;
+        avatar.sprite = NPC.GetComponent<Image>().sprite;
+        RectTransform rt = avatar.GetComponent<RectTransform>();
+        rt.sizeDelta = NPC.GetComponent<RectTransform>().sizeDelta;
+        rt.anchoredPosition = NPC.GetComponent<RectTransform>().anchoredPosition;
+        //avatar.rectTransform.position = NPC.GetComponent<Image>().rectTransform.position;
         GameManager.instance.player.GetComponent<PlayerController>().enabled = false;
         dialogueText.font = font;
         nameText.text = dialogue.name;
@@ -73,6 +77,7 @@ public class DialogueTextManager : MonoBehaviour
     void EndDialogue()
     {
         animator.SetBool("isOpen",false);
+        GameManager.instance.dialogueBegins = false;
         GameManager.instance.player.GetComponent<PlayerController>().enabled = true;
         //Debug.Log("End conversation");
     }

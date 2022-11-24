@@ -70,20 +70,6 @@ public class BattleSystem : MonoBehaviour
     public BattleStates state;
     private void Start()
     {
-        /**
-        if(SceneManager.GetActiveScene().buildIndex == 7) // FOREST
-        {
-            enemyXP = 5;
-        }
-        if(SceneManager.GetActiveScene().buildIndex == 8) // LIGHTFOREST
-        {
-            enemyXP = 3;
-        }
-        if(SceneManager.GetActiveScene().buildIndex == 9) // DUNGEON
-        {
-            enemyXP = 10;
-        }
-        **/
         state = BattleStates.START;
         StartCoroutine(SetupBattle());
     }

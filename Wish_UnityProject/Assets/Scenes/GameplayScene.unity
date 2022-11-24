@@ -658,7 +658,6 @@ MonoBehaviour:
   nameText: {fileID: 2111317806}
   dialogueText: {fileID: 637855396}
   avatar: {fileID: 1928218843}
-  NPC: {fileID: 8074680754341607812, guid: 464b11cdda8296f4ba907645e6b928ce, type: 3}
   isColliding: 0
   animator: {fileID: 930865973}
 --- !u!1 &83141769
@@ -1242,7 +1241,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!224 &120878075
 RectTransform:
@@ -79946,7 +79945,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &650704041
 RectTransform:
@@ -80393,7 +80392,7 @@ GameObject:
   - component: {fileID: 848906381}
   - component: {fileID: 848906382}
   m_Layer: 7
-  m_Name: NPC
+  m_Name: NPCAllegra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86877,7 +86876,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1094021240
 RectTransform:
@@ -87330,7 +87329,7 @@ MonoBehaviour:
   floatingTextManager: {fileID: 666994310}
   dialogue: {fileID: 72807789}
   Enemy: {fileID: 0}
-  isEnemyPos: 0
+  isBossBattle: 0
   isPaused: 0
   isAdreamActive: 0
   hasSwitched: 0
@@ -88490,7 +88489,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &1611048200
 RectTransform:
@@ -89551,7 +89550,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &1915203058
 RectTransform:

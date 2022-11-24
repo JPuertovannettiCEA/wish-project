@@ -60,13 +60,14 @@ public class BossBattleSystem : MonoBehaviour
     public BattleStates state;
     private void Start()
     {
-        GameManager.instance.dialogue.StartDialogue(dialogue, GameManager.instance.TextFonts[1]);
         state = BattleStates.START;
         StartCoroutine(SetupBattle());
     }
 
     IEnumerator SetupBattle()
     {
+        GameManager.instance.bossBattleTurns = 0;
+        GameManager.instance.isBossBattle = true;
         GameManager.instance.player.transform.position = new Vector3(100f,100f,0);
         GameManager.instance.player2.transform.position = new Vector3(100f,100f,0);
         GameManager.instance.player3.transform.position = new Vector3(100f,100f,0);
@@ -250,40 +251,7 @@ public class BossBattleSystem : MonoBehaviour
             return;
         }
 
-        //FOREST
-        if(SceneManager.GetActiveScene().buildIndex == 7)
-        {
-            //GameManager.instance.isMonsterDefeated = true;
-            GameManager.instance.SaveState();
-            string prevScene = LevelCheck.PreviousLevel;
-            switch(prevScene)
-            {
-                case "GameplayScene":
-                StartCoroutine(LoadLevel(2));
-                break;
-                case "GameplayScene_Route2":
-                StartCoroutine(LoadLevel(4));
-                break;
-                case "GameplayScene_Route3":
-                StartCoroutine(LoadLevel(6));
-                break;
-            }
-        }
-        //LIGHT FOREST
-        if(SceneManager.GetActiveScene().buildIndex == 8)
-        {
-            GameManager.instance.isMonsterDefeated = true;
-            GameManager.instance.SaveState();
-            StartCoroutine(LoadLevel(3));
-        }
-        //DUNGEON
-        if(SceneManager.GetActiveScene().buildIndex == 9)
-        {
-            GameManager.instance.isMonsterDefeated = true;
-            GameManager.instance.SaveState();
-            StartCoroutine(LoadLevel(5));
-        }
-        //SceneManager.LoadScene("GameplayScene");
+        partyText.text = "Can't escape!";
     }
 
     IEnumerator Player1Heal()
@@ -646,8 +614,21 @@ public class BossBattleSystem : MonoBehaviour
         }
         else
         {
-            state = BattleStates.PLAYER1TURN;
-            StartCoroutine(Player1Turn());
+            if(GameManager.instance.bossBattleTurns >= 2)
+            {
+                GameManager.instance.bossBattleEnds = true;
+                if(GameManager.instance.dialogueBegins == false)
+                {
+                    transitionTime = 3f;
+                    StartCoroutine(LoadLevel(11)); // GAME OVER
+                }
+            }
+            else
+            {
+                state = BattleStates.PLAYER1TURN;
+                GameManager.instance.bossBattleTurns++;
+                StartCoroutine(Player1Turn());
+            }
         }
     }
 

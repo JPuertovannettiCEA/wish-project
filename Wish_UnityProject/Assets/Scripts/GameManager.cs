@@ -103,7 +103,8 @@ public class GameManager : MonoBehaviour
     public FloatingTextManager floatingTextManager;
     public DialogueTextManager dialogue;
     public GameObject Enemy;
-    public bool isEnemyPos;
+
+    public bool isBossBattle;
 
     public bool isPaused;
     public bool isAdreamActive;
@@ -127,6 +128,12 @@ public class GameManager : MonoBehaviour
     public bool isPowerEffect;
 
     public bool isMonsterDefeated;
+
+    public int bossBattleTurns;
+
+    public bool bossBattleEnds;
+
+    public bool dialogueBegins;
 
     //INVENTORY
     public int RedPotions; 
