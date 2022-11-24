@@ -61,12 +61,14 @@ public class CharacterMenu : MonoBehaviour
                 anim.GetComponent<Animator>().SetTrigger("Show");
                 UpdateMenu();
                 GameManager.instance.player.GetComponent<PlayerController>().enabled = false;
+                //Time.timeScale = 0;
             }
             else
             {
                 GameManager.instance.isPaused = false;
                 anim.GetComponent<Animator>().SetTrigger("Hide");
                 GameManager.instance.player.GetComponent<PlayerController>().enabled = true;
+                //Time.timeScale = 1;
             }
             isPaused = !isPaused;
         }
@@ -145,8 +147,8 @@ public class CharacterMenu : MonoBehaviour
         RectTransform rt = characterImage.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(200.7f, 640.6f);
         rt.anchoredPosition = new Vector2(80f,rt.anchoredPosition.y);
-        healthText.text = GameManager.instance.player.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player.GetComponent<Unit>().maxHP;
-        levelText.text = GameManager.instance.player.GetComponent<Unit>().unitLevel.ToString();
+        healthText.text = GameManager.instance.player5.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player5.GetComponent<Unit>().maxHP;
+        levelText.text = GameManager.instance.player5.GetComponent<Unit>().unitLevel.ToString();
         description.text = "The timid one!";
     }
 
@@ -171,14 +173,6 @@ public class CharacterMenu : MonoBehaviour
             GameManager.instance.hasSwitched = true;
             activePanel.SetActive(false);
         }
-        //GameManager.instance.player.SwapSprite(currentCharacterSelection);
-    }
-    private void OnLeeSelectionChanged()
-    {
-        //characterSelectionSprite.sprite = GameManager.instance.playerSprites[currentCharacterSelection];
-        AdreamMenu.sprite = notActive[0];
-        LeeMenu.sprite = notActive[3];
-        isAdreamActive = false;
         //GameManager.instance.player.SwapSprite(currentCharacterSelection);
     }
 
@@ -245,7 +239,22 @@ public class CharacterMenu : MonoBehaviour
     public void UpdateMenu()
     {
         //GameManager.instance.player.GetComponent<PlayerController>().enabled = false;
-        itemText.text = " ";
+        //CHANGE CHARACTER
+        if(GameManager.instance.isAdreamActive == false)
+        {
+            isAdreamActive = false;
+            AdreamMenu.sprite = notActive[0];
+            LeeMenu.sprite = notActive[3];
+
+        }
+        else //ADREAM IS TRUE
+        {
+            isAdreamActive = true;
+            AdreamMenu.sprite = notActive[1];
+            LeeMenu.sprite = notActive[2];
+        }
+        //
+        itemText.text = "Select an item to see their effect";
         itemQuantText1.text = "x" + GameManager.instance.RedPotions;
         itemQuantText2.text = "x" + GameManager.instance.GreenPotions;
         itemQuantText3.text = "x" + GameManager.instance.BluePotions;
@@ -253,9 +262,9 @@ public class CharacterMenu : MonoBehaviour
         RectTransform rt = characterImage.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(358.5f, 640.6f);
         rt.anchoredPosition = new Vector2(0f,rt.anchoredPosition.y);
-        healthText.text = GameManager.instance.player.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player.GetComponent<Unit>().maxHP;
-        levelText.text = GameManager.instance.player.GetComponent<Unit>().unitLevel.ToString();
-        description.text = "The lead one!";
+        healthText.text = " "; //GameManager.instance.player.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player.GetComponent<Unit>().maxHP;
+        levelText.text = " "; //GameManager.instance.player.GetComponent<Unit>().unitLevel.ToString();
+        description.text = "Select a character to see their description";
 
         //hitpointText.text = GameManager.instance.player.hitPoint.ToString();
         

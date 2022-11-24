@@ -591,16 +591,17 @@ public class BattleSystem : MonoBehaviour
 
     void EndBattle()
     {
+        //GameManager.instance.isEnemyPos = true;
         if(state == BattleStates.WON)
         {
             dialogueText.text = " Y O U W O N !";
-            GameManager.instance.player.GetComponent<PlayerController>().enabled = false;
+            //GameManager.instance.player.GetComponent<PlayerController>().enabled = true;
             GameManager.instance.isMonsterDefeated = true;
             GameManager.instance.GrantXP(enemyXP);
         }
         else
         {
-            GameManager.instance.player.GetComponent<PlayerController>().enabled = false;
+            //GameManager.instance.player.GetComponent<PlayerController>().enabled = true;
             GameManager.instance.isMonsterDefeated = true;
             dialogueText.text = "You were defeated...";
         }

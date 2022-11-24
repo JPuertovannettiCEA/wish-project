@@ -87502,6 +87502,8 @@ MonoBehaviour:
   player5: {fileID: 8471943696241170484}
   floatingTextManager: {fileID: 666994310}
   dialogue: {fileID: 72807789}
+  enemyPos: {fileID: 0}
+  isEnemyPos: 0
   isPaused: 0
   isAdreamActive: 0
   hasSwitched: 0

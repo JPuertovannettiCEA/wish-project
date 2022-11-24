@@ -28,9 +28,7 @@ public class GameManager : MonoBehaviour
         }
 
         //PlayerPrefs.DeleteAll();
-
         instance = this;
-        //inventory.slots[] = 3;
         SceneManager.sceneLoaded += LoadState;
         DontDestroyOnLoad(gameObject);
     }
@@ -43,7 +41,9 @@ public class GameManager : MonoBehaviour
             if(hasSwitched == true)
             {
                 player5.transform.position = player4.transform.position;
+                player5.GetComponent<FollowPlayer2>().enabled = true;
                 player4.transform.position = new Vector3(100f,100f,0f);
+                player4.GetComponent<FollowPlayer2>().enabled = false;
                 hasSwitched = false;
             }
             //player4.SetActive(false);
@@ -54,17 +54,14 @@ public class GameManager : MonoBehaviour
             if(hasSwitched == true)
             {
                 player4.transform.position = player5.transform.position;
+                player4.GetComponent<FollowPlayer2>().enabled = true;
                 player5.transform.position = new Vector3(100f,100f,0f);
+                player5.GetComponent<FollowPlayer2>().enabled = false;
                 hasSwitched = false;
             }
             //player4.SetActive(true);
         }
 
-        if(isMonsterDefeated == true)
-        {
-            Destroy(GameObject.Find("Enemy"));
-            isMonsterDefeated = false;
-        }
     }
 
     // Resources
@@ -101,6 +98,8 @@ public class GameManager : MonoBehaviour
     //public weapon weapon etc
     public FloatingTextManager floatingTextManager;
     public DialogueTextManager dialogue;
+    public Transform enemyPos;
+    public bool isEnemyPos;
 
     public bool isPaused;
     public bool isAdreamActive;
@@ -202,9 +201,11 @@ public class GameManager : MonoBehaviour
         s += "0" + "|";
         s += money.ToString() + "|";
         s += experience.ToString() + "|";
-        s += isMagicEffect + "|";
-        s += isPowerEffect + "|";
-        s += isAdreamActive + "|";
+        s += isMagicEffect.ToString() + "|";
+        s += isPowerEffect.ToString() + "|";
+        s += isAdreamActive.ToString() + "|";
+        s += isMonsterDefeated.ToString() + "|";
+        //s += enemyPos.ToString() + "|";
         s += "0";
 
         PlayerPrefs.SetString("SaveState", s);
@@ -224,9 +225,11 @@ public class GameManager : MonoBehaviour
         //EXPERIENCE
         money = int.Parse(data[1]); 
         experience = int.Parse(data[2]);
-        //isMagicEffect = bool.Parse(data[3]);
-        //isPowerEffect = bool.Parse(data[4]);
-        //isAdreamActive = bool.Parse(data[5]);
+        isMagicEffect = bool.Parse(data[3]);
+        isPowerEffect = bool.Parse(data[4]);
+        isAdreamActive = bool.Parse(data[5]);
+        isMonsterDefeated = bool.Parse(data[6]);
+        //enemyPos = new Vector3(float.Parse(data[6]),);
         if(GetCurrentLevel() != 1)
         {
             player.GetComponent<Unit>().SetLevel(GetCurrentLevel()); 
@@ -246,13 +249,17 @@ public class GameManager : MonoBehaviour
                 if(isAdreamActive == true)
                 {
                     player5.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                    player5.GetComponent<FollowPlayer2>().enabled = true;
                     player4.transform.position = new Vector3(100f,100f,0f);
+                    player4.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
                 else
                 {
                     player4.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                    player4.GetComponent<FollowPlayer2>().enabled = true;
                     player5.transform.position = new Vector3(100f,100f,0f);
+                    player5.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
             break;
@@ -264,13 +271,17 @@ public class GameManager : MonoBehaviour
                 if(isAdreamActive == true)
                 {
                     player5.transform.position = GameObject.Find("SpawnPoint_Route1").transform.position;
+                    player5.GetComponent<FollowPlayer2>().enabled = true;
                     player4.transform.position = new Vector3(100f,100f,0f);
+                    player4.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
                 else
                 {
                     player4.transform.position = GameObject.Find("SpawnPoint_Route1").transform.position;
+                    player4.GetComponent<FollowPlayer2>().enabled = true;
                     player5.transform.position = new Vector3(100f,100f,0f);
+                    player5.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
             break;
@@ -284,13 +295,17 @@ public class GameManager : MonoBehaviour
                 if(isAdreamActive == true)
                 {
                     player5.transform.position = GameObject.Find("SpawnPoint_Route2").transform.position;
+                    player5.GetComponent<FollowPlayer2>().enabled = true;
                     player4.transform.position = new Vector3(100f,100f,0f);
+                    player4.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
                 else
                 {
                     player4.transform.position = GameObject.Find("SpawnPoint_Route2").transform.position;
+                    player4.GetComponent<FollowPlayer2>().enabled = true;
                     player5.transform.position = new Vector3(100f,100f,0f);
+                    player5.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
             }
@@ -302,13 +317,17 @@ public class GameManager : MonoBehaviour
                 if(isAdreamActive == true)
                 {
                     player5.transform.position = GameObject.Find("SpawnPoint_Route2_Forest").transform.position;
+                    player5.GetComponent<FollowPlayer2>().enabled = true;
                     player4.transform.position = new Vector3(100f,100f,0f);
+                    player4.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
                 else
                 {
                     player4.transform.position = GameObject.Find("SpawnPoint_Route2_Forest").transform.position;
+                    player4.GetComponent<FollowPlayer2>().enabled = true;
                     player5.transform.position = new Vector3(100f,100f,0f);
+                    player5.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
             }
@@ -320,13 +339,17 @@ public class GameManager : MonoBehaviour
                 if(isAdreamActive == true)
                 {
                     player5.transform.position = GameObject.Find("SpawnPoint_Route2_Forest_Route3").transform.position;
+                    player5.GetComponent<FollowPlayer2>().enabled = true;
                     player4.transform.position = new Vector3(100f,100f,0f);
+                    player4.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
                 else
                 {
                     player4.transform.position = GameObject.Find("SpawnPoint_Route2_Forest_Route3").transform.position;
+                    player4.GetComponent<FollowPlayer2>().enabled = true;
                     player5.transform.position = new Vector3(100f,100f,0f);
+                    player5.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
             }
@@ -341,13 +364,17 @@ public class GameManager : MonoBehaviour
                 if(isAdreamActive == true)
                 {
                     player5.transform.position = GameObject.Find("SpawnPoint").transform.position;
+                    player5.GetComponent<FollowPlayer2>().enabled = true;
                     player4.transform.position = new Vector3(100f,100f,0f);
+                    player4.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
                 else
                 {
                     player4.transform.position = GameObject.Find("SpawnPoint").transform.position;
+                    player4.GetComponent<FollowPlayer2>().enabled = true;
                     player5.transform.position = new Vector3(100f,100f,0f);
+                    player5.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
             }
@@ -359,13 +386,17 @@ public class GameManager : MonoBehaviour
                 if(isAdreamActive == true)
                 {
                     player5.transform.position = GameObject.Find("SpawnPoint_Main").transform.position;
+                    player5.GetComponent<FollowPlayer2>().enabled = true;
                     player4.transform.position = new Vector3(100f,100f,0f);
+                    player4.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
                 else
                 {
                     player4.transform.position = GameObject.Find("SpawnPoint_Main").transform.position;
+                    player4.GetComponent<FollowPlayer2>().enabled = true;
                     player5.transform.position = new Vector3(100f,100f,0f);
+                    player5.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
             }
@@ -378,31 +409,167 @@ public class GameManager : MonoBehaviour
                 if(isAdreamActive == true)
                 {
                     player5.transform.position = GameObject.Find("SpawnPoint_Route3").transform.position;
+                    player5.GetComponent<FollowPlayer2>().enabled = true;
                     player4.transform.position = new Vector3(100f,100f,0f);
+                    player4.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
                 else
                 {
                     player4.transform.position = GameObject.Find("SpawnPoint_Route3").transform.position;
+                    player4.GetComponent<FollowPlayer2>().enabled = true;
                     player5.transform.position = new Vector3(100f,100f,0f);
+                    player5.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
             break;
             //FROM DUNGEON
             case "GameplayScene_Route2_Dungeon":
+            if(GameObject.Find("SpawnPoint_Dungeon"))
+            {
                 player.transform.position = GameObject.Find("SpawnPoint_Dungeon").transform.position;
                 player2.transform.position = GameObject.Find("SpawnPoint_Dungeon").transform.position;
                 player3.transform.position = GameObject.Find("SpawnPoint_Dungeon").transform.position;
                 if(isAdreamActive == true)
                 {
                     player5.transform.position = GameObject.Find("SpawnPoint_Dungeon").transform.position;
+                    player5.GetComponent<FollowPlayer2>().enabled = true;
                     player4.transform.position = new Vector3(100f,100f,0f);
+                    player4.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
                 else
                 {
                     player4.transform.position = GameObject.Find("SpawnPoint_Dungeon").transform.position;
+                    player4.GetComponent<FollowPlayer2>().enabled = true;
                     player5.transform.position = new Vector3(100f,100f,0f);
+                    player5.GetComponent<FollowPlayer2>().enabled = false;
+
+                }
+            }
+            break;
+            //FROM FOREST BATTLE
+            case "BattleSceneForest":
+                if(isMonsterDefeated == true)
+                {
+                    //enemyPos = GameObject.Find("Enemy").transform;
+                    //GameObject.Find("Enemy").GetComponent<EnemyHitBox>().enabled = false;
+                    player.GetComponent<PlayerController>().enabled = true;
+                    Destroy(GameObject.Find("Enemy"));
+                    isMonsterDefeated = false;
+                }
+                //GAMEPLAY SCENE MAIN
+                if(SceneManager.GetActiveScene().buildIndex == 2)
+                {
+                    player.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                    player2.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                    player3.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                    if(isAdreamActive == true)
+                    {
+                        player5.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                        player5.GetComponent<FollowPlayer2>().enabled = true;
+                        player4.transform.position = new Vector3(100f,100f,0f);
+                        player4.GetComponent<FollowPlayer2>().enabled = false;
+
+                    }
+                    else
+                    {
+                        player4.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                        player4.GetComponent<FollowPlayer2>().enabled = true;
+                        player5.transform.position = new Vector3(100f,100f,0f);
+                        player5.GetComponent<FollowPlayer2>().enabled = false;
+
+                    }
+                }
+                //ROUTE 2
+                if(SceneManager.GetActiveScene().buildIndex == 4)
+                {
+                    player.transform.position = GameObject.Find("SpawnPoint_Main").transform.position;
+                    player2.transform.position = GameObject.Find("SpawnPoint_Main").transform.position;
+                    player3.transform.position = GameObject.Find("SpawnPoint_Main").transform.position;
+                    if(isAdreamActive == true)
+                    {
+                        player5.transform.position = GameObject.Find("SpawnPoint_Main").transform.position;
+                        player5.GetComponent<FollowPlayer2>().enabled = true;
+                        player4.transform.position = new Vector3(100f,100f,0f);
+                        player4.GetComponent<FollowPlayer2>().enabled = false;
+
+                    }
+                    else
+                    {
+                        player4.transform.position = GameObject.Find("SpawnPoint_Main").transform.position;
+                        player4.GetComponent<FollowPlayer2>().enabled = true;
+                        player5.transform.position = new Vector3(100f,100f,0f);
+                        player5.GetComponent<FollowPlayer2>().enabled = false;
+
+                    }
+                }
+                //ROUTE 3
+                if(SceneManager.GetActiveScene().buildIndex == 6)
+                {
+                    player.transform.position = GameObject.Find("SpawnPoint_Route2_Forest_Route3").transform.position;
+                    player2.transform.position = GameObject.Find("SpawnPoint_Route2_Forest_Route3").transform.position;
+                    player3.transform.position = GameObject.Find("SpawnPoint_Route2_Forest_Route3").transform.position;
+                    if(isAdreamActive == true)
+                    {
+                        player5.transform.position = GameObject.Find("SpawnPoint_Route2_Forest_Route3").transform.position;
+                        player5.GetComponent<FollowPlayer2>().enabled = true;
+                        player4.transform.position = new Vector3(100f,100f,0f);
+                        player4.GetComponent<FollowPlayer2>().enabled = false;
+
+                    }
+                    else
+                    {
+                        player4.transform.position = GameObject.Find("SpawnPoint_Route2_Forest_Route3").transform.position;
+                        player4.GetComponent<FollowPlayer2>().enabled = true;
+                        player5.transform.position = new Vector3(100f,100f,0f);
+                        player5.GetComponent<FollowPlayer2>().enabled = false;
+
+                    }
+                }
+
+            break;
+            //FROM LIGHT FOREST BATTLE
+            case "BattleSceneLightForest":
+                player.transform.position = enemyPos.position;
+                player2.transform.position = enemyPos.position;
+                player3.transform.position = enemyPos.position;
+                if(isAdreamActive == true)
+                {
+                    player5.transform.position = enemyPos.position;
+                    player5.GetComponent<FollowPlayer2>().enabled = true;
+                    player4.transform.position = new Vector3(100f,100f,0f);
+                    player4.GetComponent<FollowPlayer2>().enabled = false;
+
+                }
+                else
+                {
+                    player4.transform.position = enemyPos.position;
+                    player4.GetComponent<FollowPlayer2>().enabled = true;
+                    player5.transform.position = new Vector3(100f,100f,0f);
+                    player5.GetComponent<FollowPlayer2>().enabled = false;
+
+                }
+            break;
+            //FROM DUNGEON BATTLE
+            case "BattleSceneDungeon":
+                player.transform.position = enemyPos.position;
+                player2.transform.position = enemyPos.position;
+                player3.transform.position = enemyPos.position;
+                if(isAdreamActive == true)
+                {
+                    player5.transform.position = enemyPos.position;
+                    player5.GetComponent<FollowPlayer2>().enabled = true;
+                    player4.transform.position = new Vector3(100f,100f,0f);
+                    player4.GetComponent<FollowPlayer2>().enabled = false;
+
+                }
+                else
+                {
+                    player4.transform.position = enemyPos.position;
+                    player4.GetComponent<FollowPlayer2>().enabled = true;
+                    player5.transform.position = new Vector3(100f,100f,0f);
+                    player5.GetComponent<FollowPlayer2>().enabled = false;
 
                 }
             break;

@@ -16,16 +16,11 @@ public class EnemyHitBox : Collidable
             //HERE IS WHEN THE BATTLE SCENE COMES IN
             GameManager.instance.SaveState();
             SceneManager.LoadScene("BattleSceneForest");
-            //Create a new damage object 
-            /**Damage dmg = new Damage
-            {
-                damageAmount = damage,
-                origin = transform.position,
-                pushForce = pushForce
-            };**/
-            //GameManager.instance.ShowText("BATTLE!", 35, Color.red, transform.position, Vector3.zero, 1.0f);
-
-            //col.SendMessage("ReceiveDamage", dmg);
+        }
+        if(this.name == "Boss" && col.tag == "Fighter" && col.name == "Player")
+        {
+            GameManager.instance.SaveState();
+            SceneManager.LoadScene("BattleSceneBoss");
         }
     }
 }
