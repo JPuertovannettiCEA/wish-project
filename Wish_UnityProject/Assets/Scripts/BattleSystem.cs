@@ -34,6 +34,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject playerPrefab2;
     public GameObject playerPrefab3;
     public GameObject playerPrefab4;
+    public GameObject playerPrefab5;
     public GameObject enemyPrefab;
 
     public Transform playerBattleStation1;
@@ -81,6 +82,36 @@ public class BattleSystem : MonoBehaviour
         {
             enemyXP = 10;
         }
+        state = BattleStates.START;
+        StartCoroutine(SetupBattle());
+    }
+
+    IEnumerator SetupBattle()
+    {
+        GameObject playerGO_1 = Instantiate(playerPrefab1, playerBattleStation1);
+        playerUnit_1 = GameManager.instance.player.GetComponent<Unit>();
+        GameObject playerGO_2 = Instantiate(playerPrefab2, playerBattleStation2);
+        playerUnit_2 = GameManager.instance.player2.GetComponent<Unit>();
+        GameObject playerGO_3 = Instantiate(playerPrefab3, playerBattleStation3);
+        playerUnit_3 = GameManager.instance.player3.GetComponent<Unit>();
+        if(GameManager.instance.isAdreamActive == true)
+        {
+            GameObject playerGO_4 = Instantiate(playerPrefab5, playerBattleStation4);
+            playerUnit_4 = GameManager.instance.player5.GetComponent<Unit>();
+            //GameObject playerGO_5 = Instantiate(playerPrefab4, playerBattleStation4);
+            //playerGO_5.SetActive(false);
+        }
+        else
+        {
+            GameObject playerGO_4 = Instantiate(playerPrefab4, playerBattleStation4);
+            playerUnit_4 = GameManager.instance.player4.GetComponent<Unit>();
+            //GameObject playerGO_5 = Instantiate(playerPrefab5, playerBattleStation4);
+            //playerGO_5.SetActive(false);
+        }
+
+        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+        enemyUnit = enemyGO.GetComponent<Unit>();
+
         if(GameManager.instance.isMagicEffect == true)
         {
             enemyUnit.damage = enemyUnit.damage / 2;
@@ -92,23 +123,6 @@ public class BattleSystem : MonoBehaviour
             playerUnit_3.damage = playerUnit_3.damage * 2;
             playerUnit_4.damage = playerUnit_4.damage * 2;
         }
-        state = BattleStates.START;
-        StartCoroutine(SetupBattle());
-    }
-
-    IEnumerator SetupBattle()
-    {
-        GameObject playerGO_1 = Instantiate(playerPrefab1, playerBattleStation1);
-        playerUnit_1 = playerGO_1.GetComponent<Unit>();
-        GameObject playerGO_2 = Instantiate(playerPrefab2, playerBattleStation2);
-        playerUnit_2 = playerGO_2.GetComponent<Unit>();
-        GameObject playerGO_3 = Instantiate(playerPrefab3, playerBattleStation3);
-        playerUnit_3 = playerGO_3.GetComponent<Unit>();
-        GameObject playerGO_4 = Instantiate(playerPrefab4, playerBattleStation4);
-        playerUnit_4 = playerGO_4.GetComponent<Unit>();
-
-        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
-        enemyUnit = enemyGO.GetComponent<Unit>();
 
         dialogueText.text = "A wild " + enemyUnit.unitName + " approaches!";
 

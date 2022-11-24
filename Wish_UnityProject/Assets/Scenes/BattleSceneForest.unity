@@ -8660,6 +8660,7 @@ MonoBehaviour:
   playerPrefab2: {fileID: 7862696649391317730, guid: 2eda543c9c30a034b9f78d24385d91d4, type: 3}
   playerPrefab3: {fileID: 7862696649391317730, guid: 14306435b68b63c45bc5cf84580f4b42, type: 3}
   playerPrefab4: {fileID: 7862696649391317730, guid: b46543d0fe3a6e3439b7b293c0603867, type: 3}
+  playerPrefab5: {fileID: 7862696649391317730, guid: 85149422d762c884fa9a2cb78f7a9b22, type: 3}
   enemyPrefab: {fileID: 828762038763796723, guid: 97f491c7d129834468aabc938c552c9c, type: 3}
   playerBattleStation1: {fileID: 864847658}
   playerBattleStation2: {fileID: 899816127}

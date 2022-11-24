@@ -27,6 +27,7 @@ public class PortalScene : Collidable
             if(this.name == "Portal_R1")
             {
                 StartCoroutine(LoadLevel(2));
+                
                 //SceneManager.LoadScene(sceneNames[2]);
 
             }

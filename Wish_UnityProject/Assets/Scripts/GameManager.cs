@@ -15,8 +15,14 @@ public class GameManager : MonoBehaviour
             Destroy(player.gameObject);
             Destroy(player2.gameObject);
             Destroy(player3.gameObject);
+            //if(isAdreamActive != false)
+            //{
             Destroy(player4.gameObject);
+            //}
+            //else
+            //{
             Destroy(player5.gameObject);
+            //}
             Destroy(floatingTextManager.transform.parent.gameObject);
             return;
         }
@@ -33,23 +39,25 @@ public class GameManager : MonoBehaviour
     {
         if(isAdreamActive == true)
         {
-            player5.SetActive(true);
+            //player5.SetActive(true);
             if(hasSwitched == true)
             {
                 player5.transform.position = player4.transform.position;
+                player4.transform.position = new Vector3(100f,100f,0f);
                 hasSwitched = false;
             }
-            player4.SetActive(false);
+            //player4.SetActive(false);
         }
         else
         {
-            player5.SetActive(false);
+            //player5.SetActive(false);
             if(hasSwitched == true)
             {
                 player4.transform.position = player5.transform.position;
+                player5.transform.position = new Vector3(100f,100f,0f);
                 hasSwitched = false;
             }
-            player4.SetActive(true);
+            //player4.SetActive(true);
         }
     }
 
@@ -219,8 +227,194 @@ public class GameManager : MonoBehaviour
 
         //Debug.Log("LoadState");
 
-        //if(SceneManager.GetActiveScene() == )
-        //player.transform.position = GameObject.Find("SpawnPoint").transform.position;
+        string prevScene = LevelCheck.PreviousLevel;
+        switch(prevScene)
+        {
+            //FROM START
+            case "IntroductionScene":
+                player.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                player2.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                player3.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                if(isAdreamActive == true)
+                {
+                    player5.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                    player4.transform.position = new Vector3(100f,100f,0f);
+
+                }
+                else
+                {
+                    player4.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                    player5.transform.position = new Vector3(100f,100f,0f);
+
+                }
+            break;
+            //FROM ROUTE 1
+            case "GameplayScene_Route1":
+                player.transform.position = GameObject.Find("SpawnPoint_Route1").transform.position;
+                player2.transform.position = GameObject.Find("SpawnPoint_Route1").transform.position;
+                player3.transform.position = GameObject.Find("SpawnPoint_Route1").transform.position;
+                if(isAdreamActive == true)
+                {
+                    player5.transform.position = GameObject.Find("SpawnPoint_Route1").transform.position;
+                    player4.transform.position = new Vector3(100f,100f,0f);
+
+                }
+                else
+                {
+                    player4.transform.position = GameObject.Find("SpawnPoint_Route1").transform.position;
+                    player5.transform.position = new Vector3(100f,100f,0f);
+
+                }
+            break;
+            //FROM ROUTE 2
+            case "GameplayScene_Route2":
+            if(GameObject.Find("SpawnPoint_Route2"))
+            {
+                player.transform.position = GameObject.Find("SpawnPoint_Route2").transform.position;
+                player2.transform.position = GameObject.Find("SpawnPoint_Route2").transform.position;
+                player3.transform.position = GameObject.Find("SpawnPoint_Route2").transform.position;
+                if(isAdreamActive == true)
+                {
+                    player5.transform.position = GameObject.Find("SpawnPoint_Route2").transform.position;
+                    player4.transform.position = new Vector3(100f,100f,0f);
+
+                }
+                else
+                {
+                    player4.transform.position = GameObject.Find("SpawnPoint_Route2").transform.position;
+                    player5.transform.position = new Vector3(100f,100f,0f);
+
+                }
+            }
+            if(GameObject.Find("SpawnPoint_Route2_Forest"))
+            {
+                player.transform.position = GameObject.Find("SpawnPoint_Route2_Forest").transform.position;
+                player2.transform.position = GameObject.Find("SpawnPoint_Route2_Forest").transform.position;
+                player3.transform.position = GameObject.Find("SpawnPoint_Route2_Forest").transform.position;
+                if(isAdreamActive == true)
+                {
+                    player5.transform.position = GameObject.Find("SpawnPoint_Route2_Forest").transform.position;
+                    player4.transform.position = new Vector3(100f,100f,0f);
+
+                }
+                else
+                {
+                    player4.transform.position = GameObject.Find("SpawnPoint_Route2_Forest").transform.position;
+                    player5.transform.position = new Vector3(100f,100f,0f);
+
+                }
+            }
+            if(GameObject.Find("SpawnPoint_Route2_Forest_Route3"))
+            {
+                player.transform.position = GameObject.Find("SpawnPoint_Route2_Forest_Route3").transform.position;
+                player2.transform.position = GameObject.Find("SpawnPoint_Route2_Forest_Route3").transform.position;
+                player3.transform.position = GameObject.Find("SpawnPoint_Route2_Forest_Route3").transform.position;
+                if(isAdreamActive == true)
+                {
+                    player5.transform.position = GameObject.Find("SpawnPoint_Route2_Forest_Route3").transform.position;
+                    player4.transform.position = new Vector3(100f,100f,0f);
+
+                }
+                else
+                {
+                    player4.transform.position = GameObject.Find("SpawnPoint_Route2_Forest_Route3").transform.position;
+                    player5.transform.position = new Vector3(100f,100f,0f);
+
+                }
+            }
+            break;
+            //FROM GAMEPLAY SCENE 1 
+            case "GameplayScene":
+            if(GameObject.Find("SpawnPoint"))
+            {
+                player.transform.position = GameObject.Find("SpawnPoint").transform.position;
+                player2.transform.position = GameObject.Find("SpawnPoint").transform.position;
+                player3.transform.position = GameObject.Find("SpawnPoint").transform.position;
+                if(isAdreamActive == true)
+                {
+                    player5.transform.position = GameObject.Find("SpawnPoint").transform.position;
+                    player4.transform.position = new Vector3(100f,100f,0f);
+
+                }
+                else
+                {
+                    player4.transform.position = GameObject.Find("SpawnPoint").transform.position;
+                    player5.transform.position = new Vector3(100f,100f,0f);
+
+                }
+            }
+            if(GameObject.Find("SpawnPoint_Main"))
+            {
+                player.transform.position = GameObject.Find("SpawnPoint_Main").transform.position;
+                player2.transform.position = GameObject.Find("SpawnPoint_Main").transform.position;
+                player3.transform.position = GameObject.Find("SpawnPoint_Main").transform.position;
+                if(isAdreamActive == true)
+                {
+                    player5.transform.position = GameObject.Find("SpawnPoint_Main").transform.position;
+                    player4.transform.position = new Vector3(100f,100f,0f);
+
+                }
+                else
+                {
+                    player4.transform.position = GameObject.Find("SpawnPoint_Main").transform.position;
+                    player5.transform.position = new Vector3(100f,100f,0f);
+
+                }
+            }
+            break;
+            //FROM ROUTE 3
+            case "GameplayScene_Route3":
+                player.transform.position = GameObject.Find("SpawnPoint_Route3").transform.position;
+                player2.transform.position = GameObject.Find("SpawnPoint_Route3").transform.position;
+                player3.transform.position = GameObject.Find("SpawnPoint_Route3").transform.position;
+                if(isAdreamActive == true)
+                {
+                    player5.transform.position = GameObject.Find("SpawnPoint_Route3").transform.position;
+                    player4.transform.position = new Vector3(100f,100f,0f);
+
+                }
+                else
+                {
+                    player4.transform.position = GameObject.Find("SpawnPoint_Route3").transform.position;
+                    player5.transform.position = new Vector3(100f,100f,0f);
+
+                }
+            break;
+            //FROM DUNGEON
+            case "GameplayScene_Route2_Dungeon":
+                player.transform.position = GameObject.Find("SpawnPoint_Dungeon").transform.position;
+                player2.transform.position = GameObject.Find("SpawnPoint_Dungeon").transform.position;
+                player3.transform.position = GameObject.Find("SpawnPoint_Dungeon").transform.position;
+                if(isAdreamActive == true)
+                {
+                    player5.transform.position = GameObject.Find("SpawnPoint_Dungeon").transform.position;
+                    player4.transform.position = new Vector3(100f,100f,0f);
+
+                }
+                else
+                {
+                    player4.transform.position = GameObject.Find("SpawnPoint_Dungeon").transform.position;
+                    player5.transform.position = new Vector3(100f,100f,0f);
+
+                }
+            break;
+        }
+        /**
+        player.transform.position = GameObject.Find("SpawnPoint").transform.position;
+        player2.transform.position = GameObject.Find("SpawnPoint").transform.position;
+        player3.transform.position = GameObject.Find("SpawnPoint").transform.position;
+        if(isAdreamActive == true)
+        {
+            player5.transform.position = GameObject.Find("SpawnPoint").transform.position;
+            player4.transform.position = new Vector3(100f,100f,0f);
+
+        }
+        else
+        {
+            player4.transform.position = GameObject.Find("SpawnPoint").transform.position;
+            player5.transform.position = new Vector3(100f,100f,0f);
+
+        }**/
     }
 
 }
