@@ -38,7 +38,9 @@ public class Unit : MonoBehaviour
 
     public void OnLevelUp()
     {
-
+        unitLevel++;
+        damage = damage + 3;
+        maxHP = maxHP + 10;
     }
 
     public void SetLevel(int level)

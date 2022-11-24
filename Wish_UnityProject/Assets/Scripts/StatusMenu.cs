@@ -180,16 +180,19 @@ public class StatusMenu : MonoBehaviour
         nameplayer1.text = GameManager.instance.player.GetComponent<Unit>().unitName;
         levelPlayer1.text = "LEVEL: " + GameManager.instance.player.GetComponent<Unit>().unitLevel;
         healthPlayer1.text = "HEALTH: " + GameManager.instance.player.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player.GetComponent<Unit>().maxHP;
+        xpBar1.maxValue = GameManager.instance.player.GetComponent<Unit>().maxHP;
         xpBar1.value = GameManager.instance.player.GetComponent<Unit>().currentHP;
 
         nameplayer2.text = GameManager.instance.player2.GetComponent<Unit>().unitName;
         levelPlayer2.text = "LEVEL: " + GameManager.instance.player2.GetComponent<Unit>().unitLevel;
         healthPlayer2.text = "HEALTH: " + GameManager.instance.player2.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player2.GetComponent<Unit>().maxHP;
+        xpBar2.maxValue = GameManager.instance.player2.GetComponent<Unit>().maxHP;
         xpBar2.value = GameManager.instance.player2.GetComponent<Unit>().currentHP;
 
         nameplayer3.text = GameManager.instance.player3.GetComponent<Unit>().unitName;
         levelPlayer3.text = "LEVEL: " + GameManager.instance.player3.GetComponent<Unit>().unitLevel;
         healthPlayer3.text = "HEALTH: " + GameManager.instance.player3.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player3.GetComponent<Unit>().maxHP;
+        xpBar3.maxValue = GameManager.instance.player3.GetComponent<Unit>().maxHP;
         xpBar3.value = GameManager.instance.player3.GetComponent<Unit>().currentHP;
 
         if(GameManager.instance.isAdreamActive == true)

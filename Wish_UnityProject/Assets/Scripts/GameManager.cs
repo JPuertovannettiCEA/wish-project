@@ -190,6 +190,16 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("LEVEL UP");
         player.GetComponent<Unit>().OnLevelUp();
+        player2.GetComponent<Unit>().OnLevelUp();
+        player3.GetComponent<Unit>().OnLevelUp();
+        if(isAdreamActive == true)
+        {
+            player5.GetComponent<Unit>().OnLevelUp();
+        }
+        else
+        {
+            player4.GetComponent<Unit>().OnLevelUp();
+        }
     }
     // Save state
     /*
@@ -209,7 +219,6 @@ public class GameManager : MonoBehaviour
         s += isPowerEffect.ToString() + "|";
         s += isAdreamActive.ToString() + "|";
         s += isMonsterDefeated.ToString() + "|";
-        //s += enemyPos.ToString() + "|";
         s += "0";
 
         PlayerPrefs.SetString("SaveState", s);

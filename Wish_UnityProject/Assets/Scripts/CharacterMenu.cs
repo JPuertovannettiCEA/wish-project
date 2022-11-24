@@ -182,6 +182,11 @@ public class CharacterMenu : MonoBehaviour
         if(GameManager.instance.RedPotions > 0)
         {
             // Health Increase
+            GameManager.instance.player.GetComponent<Unit>().Heal(10);
+            GameManager.instance.player2.GetComponent<Unit>().Heal(10);
+            GameManager.instance.player3.GetComponent<Unit>().Heal(10);
+            GameManager.instance.player4.GetComponent<Unit>().Heal(10);
+            GameManager.instance.player5.GetComponent<Unit>().Heal(10);
             GameManager.instance.RedPotions--;
             UpdateMenu();
             itemText.text = "The team feels healthy!";
@@ -273,6 +278,7 @@ public class CharacterMenu : MonoBehaviour
         {
             xpText.text = GameManager.instance.experience.ToString() + " total experience points"; // Display total XP
             xpBar.localScale = Vector3.one;
+            GameManager.instance.OnLevelUp();
         }
         else
         {
