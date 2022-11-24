@@ -5,21 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public enum BattleStates
+public class BossBattleSystem : MonoBehaviour
 {
-    START,
-    PLAYER1TURN,
-    PLAYER2TURN,
-    PLAYER3TURN,
-    PLAYER4TURN,
-    ENEMYTURN,
-    WON,
-    LOST
-}
-
-public class BattleSystem : MonoBehaviour
-{
-    //LEVEL LOAD PARAMETERS
+//LEVEL LOAD PARAMETERS
     public Animator transition;
 
     public float transitionTime = 1f;
@@ -67,23 +55,12 @@ public class BattleSystem : MonoBehaviour
     private bool is4Dead = false;
     private bool allDead = false;
 
+    public DialogueText dialogue;
+
     public BattleStates state;
     private void Start()
     {
-        /**
-        if(SceneManager.GetActiveScene().buildIndex == 7) // FOREST
-        {
-            enemyXP = 5;
-        }
-        if(SceneManager.GetActiveScene().buildIndex == 8) // LIGHTFOREST
-        {
-            enemyXP = 3;
-        }
-        if(SceneManager.GetActiveScene().buildIndex == 9) // DUNGEON
-        {
-            enemyXP = 10;
-        }
-        **/
+        GameManager.instance.dialogue.StartDialogue(dialogue, GameManager.instance.TextFonts[1]);
         state = BattleStates.START;
         StartCoroutine(SetupBattle());
     }
@@ -118,10 +95,10 @@ public class BattleSystem : MonoBehaviour
         }
 
         GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
-        enemyGO.GetComponent<Enemy>().enabled = false;
-        enemyGO.GetComponent<EnemyHitBox>().enabled = false;
+        //enemyGO.GetComponent<Enemy>().enabled = false;
+        //enemyGO.GetComponent<EnemyHitBox>().enabled = false;
         enemyUnit = enemyGO.GetComponent<Unit>();
-        enemyXP = enemyGO.GetComponent<Enemy>().xpValue;
+        //enemyXP = enemyGO.GetComponent<Enemy>().xpValue;
 
         if(GameManager.instance.isMagicEffect == true)
         {

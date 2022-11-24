@@ -129,7 +129,7 @@ MonoBehaviour:
   hitPoint: 5
   maxHitPoint: 10
   pushRecoverySpeed: 0.2
-  xpValue: 1
+  xpValue: 30
   triggerLength: 1
   chaseLength: 2
   filter:

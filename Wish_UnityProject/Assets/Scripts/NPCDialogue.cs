@@ -11,7 +11,7 @@ public class NPCDialogue : Collidable
     {
         if(col.tag == "Fighter" && GameManager.instance.dialogue.isColliding == false)
         {
-            GameManager.instance.dialogue.StartDialogue(dialogue);
+            GameManager.instance.dialogue.StartDialogue(dialogue, GameManager.instance.TextFonts[2]);
         } 
         else
         {

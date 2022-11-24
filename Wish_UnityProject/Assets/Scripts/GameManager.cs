@@ -110,7 +110,10 @@ public class GameManager : MonoBehaviour
 
     public bool hasSwitched;
 
-    //public CharacterMenu pauseMenu;
+    //TEXT AVATARS
+    public List<GameObject> NPCAvatarsForDialogue;
+
+    public List<TMPro.TMP_FontAsset> TextFonts;
 
     // Logic
     public int money;

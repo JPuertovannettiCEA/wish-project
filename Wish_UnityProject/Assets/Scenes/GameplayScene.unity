@@ -87334,6 +87334,13 @@ MonoBehaviour:
   isPaused: 0
   isAdreamActive: 0
   hasSwitched: 0
+  NPCAvatarsForDialogue:
+  - {fileID: 8074680754341607814, guid: 464b11cdda8296f4ba907645e6b928ce, type: 3}
+  - {fileID: 8074680754341607814, guid: 69cea35bc5495b1478f1046453ccb498, type: 3}
+  TextFonts:
+  - {fileID: 11400000, guid: e887a98aecf0c9245af3d512eca00b03, type: 2}
+  - {fileID: 11400000, guid: 4c8564ff85dbdc24f9135006b780d8d8, type: 2}
+  - {fileID: 11400000, guid: 8260e29d307625f4dad5067125258325, type: 2}
   money: 0
   experience: 0
   experience1: 0

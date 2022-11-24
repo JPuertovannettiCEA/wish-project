@@ -9,6 +9,8 @@ public class DialogueTextManager : MonoBehaviour
     public TMP_Text nameText;
     public TMP_Text dialogueText;
 
+    public TMPro.TMP_FontAsset fontAsset;
+
     public Image avatar;
 
     public Image NPC;
@@ -23,13 +25,14 @@ public class DialogueTextManager : MonoBehaviour
         //avatar = NPC;
     }
 
-    public void StartDialogue(DialogueText dialogue)
+    public void StartDialogue(DialogueText dialogue, TMPro.TMP_FontAsset font)
     {
         animator.SetBool("isOpen",true);
         //Debug.Log("Starting conversation with" + dialogue.name);
         isColliding = true;
         avatar.sprite = NPC.sprite;
         GameManager.instance.player.GetComponent<PlayerController>().enabled = false;
+        dialogueText.font = font;
         nameText.text = dialogue.name;
 
         sentences.Clear();
