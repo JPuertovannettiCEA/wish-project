@@ -158,6 +158,8 @@ public class CharacterMenu : MonoBehaviour
             AdreamMenu.sprite = notActive[1];
             LeeMenu.sprite = notActive[2];
             isAdreamActive = true;
+            GameManager.instance.isAdreamActive = true;
+            GameManager.instance.hasSwitched = true;
             activePanel.SetActive(false);
         }
         else
@@ -165,6 +167,8 @@ public class CharacterMenu : MonoBehaviour
             AdreamMenu.sprite = notActive[0];
             LeeMenu.sprite = notActive[3];
             isAdreamActive = false;
+            GameManager.instance.isAdreamActive = false;
+            GameManager.instance.hasSwitched = true;
             activePanel.SetActive(false);
         }
         //GameManager.instance.player.SwapSprite(currentCharacterSelection);

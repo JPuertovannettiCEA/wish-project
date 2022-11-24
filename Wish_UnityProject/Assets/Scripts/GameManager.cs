@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
             Destroy(player2.gameObject);
             Destroy(player3.gameObject);
             Destroy(player4.gameObject);
+            Destroy(player5.gameObject);
             Destroy(floatingTextManager.transform.parent.gameObject);
             return;
         }
@@ -26,6 +27,30 @@ public class GameManager : MonoBehaviour
         //inventory.slots[] = 3;
         SceneManager.sceneLoaded += LoadState;
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Update()
+    {
+        if(isAdreamActive == true)
+        {
+            player5.SetActive(true);
+            if(hasSwitched == true)
+            {
+                player5.transform.position = player4.transform.position;
+                hasSwitched = false;
+            }
+            player4.SetActive(false);
+        }
+        else
+        {
+            player5.SetActive(false);
+            if(hasSwitched == true)
+            {
+                player4.transform.position = player5.transform.position;
+                hasSwitched = false;
+            }
+            player4.SetActive(true);
+        }
     }
 
     // Resources
@@ -58,11 +83,15 @@ public class GameManager : MonoBehaviour
     public GameObject player2;
     public GameObject player3;
     public GameObject player4;
+    public GameObject player5;
     //public weapon weapon etc
     public FloatingTextManager floatingTextManager;
     public DialogueTextManager dialogue;
 
     public bool isPaused;
+    public bool isAdreamActive;
+
+    public bool hasSwitched;
 
     //public CharacterMenu pauseMenu;
 
@@ -157,6 +186,9 @@ public class GameManager : MonoBehaviour
         s += "0" + "|";
         s += money.ToString() + "|";
         s += experience.ToString() + "|";
+        s += isMagicEffect + "|";
+        s += isPowerEffect + "|";
+        s += isAdreamActive + "|";
         s += "0";
 
         PlayerPrefs.SetString("SaveState", s);
@@ -176,6 +208,9 @@ public class GameManager : MonoBehaviour
         //EXPERIENCE
         money = int.Parse(data[1]); 
         experience = int.Parse(data[2]);
+        //isMagicEffect = bool.Parse(data[3]);
+        //isPowerEffect = bool.Parse(data[4]);
+        //isAdreamActive = bool.Parse(data[5]);
         if(GetCurrentLevel() != 1)
         {
             player.GetComponent<Unit>().SetLevel(GetCurrentLevel()); 

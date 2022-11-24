@@ -92,24 +92,33 @@ public class StatusMenu : MonoBehaviour
         xpBar3.value = GameManager.instance.player3.GetComponent<Unit>().currentHP;
 
         //PLAYER 4
-        if(GameManager.instance.player4.GetComponent<Unit>().unitName == "Hali")
-        {
-            PORT4.sprite = playerSprites[1].sprite;
-        }
-        if(GameManager.instance.player4.GetComponent<Unit>().unitName == "Brent")
-        {
-            PORT4.sprite = playerSprites[2].sprite;
-        }
-        if(GameManager.instance.player4.GetComponent<Unit>().unitName == "Lee")
-        {
-            PORT4.sprite = playerSprites[3].sprite;
-        }
-        if(GameManager.instance.player4.GetComponent<Unit>().unitName == "Adream")
+        if(GameManager.instance.isAdreamActive == true)
         {
             PORT4.sprite = playerSprites[4].sprite;
+            xpBar4.maxValue = GameManager.instance.player5.GetComponent<Unit>().maxHP;
+            xpBar4.value = GameManager.instance.player5.GetComponent<Unit>().currentHP;
         }
-        xpBar4.maxValue = GameManager.instance.player4.GetComponent<Unit>().maxHP;
-        xpBar4.value = GameManager.instance.player4.GetComponent<Unit>().currentHP;
+        else
+        {
+            if(GameManager.instance.player4.GetComponent<Unit>().unitName == "Hali")
+            {
+                PORT4.sprite = playerSprites[1].sprite;
+            }
+            if(GameManager.instance.player4.GetComponent<Unit>().unitName == "Brent")
+            {
+                PORT4.sprite = playerSprites[2].sprite;
+            }
+            if(GameManager.instance.player4.GetComponent<Unit>().unitName == "Lee")
+            {
+                PORT4.sprite = playerSprites[3].sprite;
+            }
+            if(GameManager.instance.player4.GetComponent<Unit>().unitName == "Adream")
+            {
+                PORT4.sprite = playerSprites[4].sprite;
+            }
+            xpBar4.maxValue = GameManager.instance.player4.GetComponent<Unit>().maxHP;
+            xpBar4.value = GameManager.instance.player4.GetComponent<Unit>().currentHP;
+        }
 
         statusAnim = GetComponent<Animator>();
     }
@@ -135,10 +144,34 @@ public class StatusMenu : MonoBehaviour
             isStatus = false;
             statusAnim.SetTrigger("Hide");
         }
-        /**if(GameManager.instance.player.GetComponent<PlayerController>().x > 0 || GameManager.instance.player.GetComponent<PlayerController>().x < 0 || GameManager.instance.player.GetComponent<PlayerController>().y > 0 || GameManager.instance.player.GetComponent<PlayerController>().y < 0)
+
+        if(GameManager.instance.isAdreamActive == true)
         {
-            statusAnim.SetTrigger("Hide");
-        }**/
+            PORT4.sprite = playerSprites[4].sprite;
+            xpBar4.maxValue = GameManager.instance.player5.GetComponent<Unit>().maxHP;
+            xpBar4.value = GameManager.instance.player5.GetComponent<Unit>().currentHP;
+        }
+        else
+        {
+            if(GameManager.instance.player4.GetComponent<Unit>().unitName == "Hali")
+            {
+                PORT4.sprite = playerSprites[1].sprite;
+            }
+            if(GameManager.instance.player4.GetComponent<Unit>().unitName == "Brent")
+            {
+                PORT4.sprite = playerSprites[2].sprite;
+            }
+            if(GameManager.instance.player4.GetComponent<Unit>().unitName == "Lee")
+            {
+                PORT4.sprite = playerSprites[3].sprite;
+            }
+            if(GameManager.instance.player4.GetComponent<Unit>().unitName == "Adream")
+            {
+                PORT4.sprite = playerSprites[4].sprite;
+            }
+            xpBar4.maxValue = GameManager.instance.player4.GetComponent<Unit>().maxHP;
+            xpBar4.value = GameManager.instance.player4.GetComponent<Unit>().currentHP;
+        }
         
     }
 
@@ -159,10 +192,20 @@ public class StatusMenu : MonoBehaviour
         healthPlayer3.text = "HEALTH: " + GameManager.instance.player3.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player3.GetComponent<Unit>().maxHP;
         xpBar3.value = GameManager.instance.player3.GetComponent<Unit>().currentHP;
 
-        nameplayer4.text = GameManager.instance.player4.GetComponent<Unit>().unitName;
-        levelPlayer4.text = "LEVEL: " + GameManager.instance.player4.GetComponent<Unit>().unitLevel;
-        healthPlayer4.text = "HEALTH: " + GameManager.instance.player4.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player4.GetComponent<Unit>().maxHP;
-        xpBar4.value = GameManager.instance.player4.GetComponent<Unit>().currentHP;
+        if(GameManager.instance.isAdreamActive == true)
+        {
+            nameplayer4.text = GameManager.instance.player5.GetComponent<Unit>().unitName;
+            levelPlayer4.text = "LEVEL: " + GameManager.instance.player5.GetComponent<Unit>().unitLevel;
+            healthPlayer4.text = "HEALTH: " + GameManager.instance.player5.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player5.GetComponent<Unit>().maxHP;
+            xpBar4.value = GameManager.instance.player5.GetComponent<Unit>().currentHP;
+        }
+        else
+        {
+            nameplayer4.text = GameManager.instance.player4.GetComponent<Unit>().unitName;
+            levelPlayer4.text = "LEVEL: " + GameManager.instance.player4.GetComponent<Unit>().unitLevel;
+            healthPlayer4.text = "HEALTH: " + GameManager.instance.player4.GetComponent<Unit>().currentHP + " / " + GameManager.instance.player4.GetComponent<Unit>().maxHP;
+            xpBar4.value = GameManager.instance.player4.GetComponent<Unit>().currentHP;
+        }
 
     }
 }
