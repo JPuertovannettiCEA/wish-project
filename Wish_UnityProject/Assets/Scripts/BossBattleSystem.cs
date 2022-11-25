@@ -132,23 +132,35 @@ public class BossBattleSystem : MonoBehaviour
     {
         if(is1Dead == true)
         {
-            dialogueText.text = playerUnit_1.unitName + "can't attack anymore!";
+            dialogueText.text = playerUnit_1.unitName + " can't attack anymore!";
             partyText.text = "...";
             yield return new WaitForSeconds(2f);
             state = BattleStates.PLAYER2TURN;
             StartCoroutine(Player2Turn());
         }
         else
-        {        
-            dialogueText.text = "Choose an action!";
-            partyText.text = "What should " + playerUnit_1.unitName + " do?";
+        {
+            if(GameManager.instance.bossBattleTurns >= 2)
+            {
+                dialogueText.text = playerUnit_1.unitName + " is too afraid to battle...";
+                partyText.text = "...";
+                yield return new WaitForSeconds(2f);
+                state = BattleStates.PLAYER2TURN;
+                StartCoroutine(Player2Turn());
+
+            }
+            else
+            {
+                dialogueText.text = "Choose an action!";
+                partyText.text = "What should " + playerUnit_1.unitName + " do?";
+            }
         }
     }
     IEnumerator Player2Turn()
     {
         if(is2Dead == true)
         {
-            dialogueText.text = playerUnit_2.unitName + "can't attack anymore!";
+            dialogueText.text = playerUnit_2.unitName + " can't attack anymore!";
             partyText.text = "...";
             yield return new WaitForSeconds(2f);
             state = BattleStates.PLAYER3TURN;
@@ -156,15 +168,26 @@ public class BossBattleSystem : MonoBehaviour
         }
         else
         {
-            dialogueText.text = "Choose an action!";
-            partyText.text = "What should " + playerUnit_2.unitName + " do?";
+            if(GameManager.instance.bossBattleTurns >= 2)
+            {
+                dialogueText.text = playerUnit_2.unitName + " is too afraid to battle...";
+                partyText.text = "...";
+                yield return new WaitForSeconds(2f);
+                state = BattleStates.PLAYER3TURN;
+                StartCoroutine(Player3Turn());
+            }
+            else
+            {
+                dialogueText.text = "Choose an action!";
+                partyText.text = "What should " + playerUnit_2.unitName + " do?";
+            }
         }
     }
     IEnumerator Player3Turn()
     {
         if(is3Dead == true)
         {
-            dialogueText.text = playerUnit_3.unitName + "can't attack anymore!";
+            dialogueText.text = playerUnit_3.unitName + " can't attack anymore!";
             partyText.text = "...";
             yield return new WaitForSeconds(2f);
             state = BattleStates.PLAYER4TURN;
@@ -172,15 +195,27 @@ public class BossBattleSystem : MonoBehaviour
         }
         else
         {
-            dialogueText.text = "Choose an action!";
-            partyText.text = "What should " + playerUnit_3.unitName + " do?";
+            if(GameManager.instance.bossBattleTurns >= 2)
+            {
+                dialogueText.text = playerUnit_3.unitName + " is too afraid to battle...";
+                partyText.text = "...";
+                yield return new WaitForSeconds(2f);
+                state = BattleStates.PLAYER4TURN;
+                StartCoroutine(Player4Turn());
+
+            }
+            else
+            {
+                dialogueText.text = "Choose an action!";
+                partyText.text = "What should " + playerUnit_3.unitName + " do?";
+            }
         }
     }
     IEnumerator Player4Turn()
     {
         if(is4Dead == true)
         {
-            dialogueText.text = playerUnit_4.unitName + "can't attack anymore!";
+            dialogueText.text = playerUnit_4.unitName + " can't attack anymore!";
             partyText.text = "...";
             yield return new WaitForSeconds(2f);
             state = BattleStates.ENEMYTURN;
@@ -188,8 +223,20 @@ public class BossBattleSystem : MonoBehaviour
         }
         else
         {
-            dialogueText.text = "Choose an action!";
-            partyText.text = "What should " + playerUnit_4.unitName + " do?";
+            if(GameManager.instance.bossBattleTurns >= 2)
+            {
+                dialogueText.text = playerUnit_4.unitName + " is too afraid to battle...";
+                partyText.text = "...";
+                yield return new WaitForSeconds(2f);
+                state = BattleStates.ENEMYTURN;
+                StartCoroutine(EnemyTurn());
+
+            }
+            else
+            {
+                dialogueText.text = "Choose an action!";
+                partyText.text = "What should " + playerUnit_4.unitName + " do?";
+            }
         }
     }
 
@@ -614,20 +661,27 @@ public class BossBattleSystem : MonoBehaviour
         }
         else
         {
-            if(GameManager.instance.bossBattleTurns >= 2)
+            if(GameManager.instance.bossBattleTurns == 2)
             {
                 GameManager.instance.bossBattleEnds = true;
-                if(GameManager.instance.dialogueBegins == false)
-                {
-                    transitionTime = 3f;
-                    StartCoroutine(LoadLevel(11)); // GAME OVER
-                }
-            }
-            else
-            {
                 state = BattleStates.PLAYER1TURN;
                 GameManager.instance.bossBattleTurns++;
                 StartCoroutine(Player1Turn());
+
+            }
+            else
+            {
+                if(GameManager.instance.bossBattleTurns == 3)
+                { 
+                    transitionTime = 2f;
+                    StartCoroutine(LoadLevel(11)); // GAME OVER
+                }
+                else
+                {
+                    state = BattleStates.PLAYER1TURN;
+                    GameManager.instance.bossBattleTurns++;
+                    StartCoroutine(Player1Turn());
+                }
             }
         }
     }

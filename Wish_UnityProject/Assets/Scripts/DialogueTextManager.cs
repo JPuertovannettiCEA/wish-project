@@ -78,6 +78,10 @@ public class DialogueTextManager : MonoBehaviour
     {
         animator.SetBool("isOpen",false);
         GameManager.instance.dialogueBegins = false;
+        /**if(GameManager.instance.BossPostdialogueBegins == true)
+        {
+            GameManager.instance.BossPostdialogueBegins = false;
+        }**/
         GameManager.instance.player.GetComponent<PlayerController>().enabled = true;
         //Debug.Log("End conversation");
     }

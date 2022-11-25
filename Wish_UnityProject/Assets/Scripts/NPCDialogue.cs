@@ -36,7 +36,7 @@ public class NPCDialogue : Collidable
         }
         if(GameManager.instance.bossBattleEnds == true && this.name == "Boss_PostBattle")
         {
-            GameManager.instance.dialogueBegins = true;
+            //GameManager.instance.BossPostdialogueBegins = true;
             GameManager.instance.dialogue.StartDialogue(dialogue, GameManager.instance.TextFonts[1], GameManager.instance.NPCAvatarsForDialogue[1]);
             GameManager.instance.bossBattleEnds = false;
         }

@@ -134,6 +134,7 @@ public class GameManager : MonoBehaviour
     public bool bossBattleEnds;
 
     public bool dialogueBegins;
+    public bool BossPostdialogueBegins;
 
     //INVENTORY
     public int RedPotions; 
@@ -615,22 +616,6 @@ public class GameManager : MonoBehaviour
                 }
             break;
         }
-        /**
-        player.transform.position = GameObject.Find("SpawnPoint").transform.position;
-        player2.transform.position = GameObject.Find("SpawnPoint").transform.position;
-        player3.transform.position = GameObject.Find("SpawnPoint").transform.position;
-        if(isAdreamActive == true)
-        {
-            player5.transform.position = GameObject.Find("SpawnPoint").transform.position;
-            player4.transform.position = new Vector3(100f,100f,0f);
-
-        }
-        else
-        {
-            player4.transform.position = GameObject.Find("SpawnPoint").transform.position;
-            player5.transform.position = new Vector3(100f,100f,0f);
-
-        }**/
     }
 
 }
