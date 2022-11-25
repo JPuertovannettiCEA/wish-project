@@ -82,7 +82,7 @@ public class Enemy : Mover
     {
         Destroy(gameObject);
         //Reward for XP to the player
-        //GameManager.instance.experience += xpValue;
+        //GameManager.instance.GrantXP(xpValue);
         //GameManager.instance.ShowText("+" + xpValue + " Experience", 35, Color.mageneta, transform.position, Vector3.up * 49, 1.0f);
     }
 

@@ -16,6 +16,7 @@ public class PlayerController : Mover
     {
         base.Start();
         animator = GetComponent<Animator>();
+        DontDestroyOnLoad(gameObject);
     }
 
     private void FixedUpdate()
@@ -32,4 +33,5 @@ public class PlayerController : Mover
         animator.SetFloat("MoveY",y);
         animator.SetFloat("Speed",new Vector3(x,y,0).sqrMagnitude);
     }
+
 }

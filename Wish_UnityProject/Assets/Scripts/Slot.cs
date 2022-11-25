@@ -15,7 +15,7 @@ public class Slot : MonoBehaviour
     {
         if(transform.childCount <= 0)
         {
-            GameManager.instance.inventoryisFull[i] = false;
+            //GameManager.instance.inventoryisFull[i] = false;
         }
     }
 

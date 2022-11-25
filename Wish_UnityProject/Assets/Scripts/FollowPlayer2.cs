@@ -18,6 +18,7 @@ public class FollowPlayer2 : Mover
     {
         base.Start();
         animator = GetComponent<Animator>();
+        DontDestroyOnLoad(gameObject);
         //lastRecord = frontCharacter.transform.position;
         //UpdateMotor(lastRecord);
     }
@@ -28,9 +29,20 @@ public class FollowPlayer2 : Mover
         if(frontCharacter.GetComponent<FollowPlayer>().xLast != 0)
         {
             //UpdateMotor((frontCharacter.transform.position - transform.position).normalized);
-            UpdateMotor((frontCharacter.transform.position - new Vector3((transform.position.x - 0.190f),transform.position.y, transform.position.z)).normalized);
-            xLast = frontCharacter.GetComponent<FollowPlayer>().xLast;
-            isCloser = false;
+            //RIGHT
+            if(frontCharacter.GetComponent<FollowPlayer>().xLast > 0)
+            {
+                UpdateMotor((frontCharacter.transform.position - new Vector3((transform.position.x + 0.190f),transform.position.y, transform.position.z)).normalized);
+                xLast = frontCharacter.GetComponent<FollowPlayer>().xLast;
+                isCloser = false;
+            }
+            //LEFT
+            if(frontCharacter.GetComponent<FollowPlayer>().xLast < 0)
+            {
+                UpdateMotor((frontCharacter.transform.position - new Vector3((transform.position.x - 0.190f),transform.position.y, transform.position.z)).normalized);
+                xLast = frontCharacter.GetComponent<FollowPlayer>().xLast;
+                isCloser = false;
+            }
         }
         if(frontCharacter.GetComponent<FollowPlayer>().yLast != 0)
         {

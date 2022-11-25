@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))] 
 public class FollowLeader : Mover
 {
+    private SpriteRenderer sprite;
     private Animator animator;
 
     public GameObject frontCharacter;
@@ -19,6 +20,8 @@ public class FollowLeader : Mover
     {
         base.Start();
         animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
+        DontDestroyOnLoad(gameObject);
         //lastRecord = frontCharacter.transform.position;
         //UpdateMotor(lastRecord);
     }
@@ -28,16 +31,41 @@ public class FollowLeader : Mover
         
         if(frontCharacter.GetComponent<PlayerController>().x != 0)
         {
-            UpdateMotor((frontCharacter.transform.position - new Vector3((transform.position.x - 0.190f),transform.position.y, transform.position.z)).normalized);
-            xLast = frontCharacter.GetComponent<PlayerController>().x;
-            isCloser = false;
+            //RIGHT
+            if(frontCharacter.GetComponent<PlayerController>().x > 0)
+            {
+                UpdateMotor((frontCharacter.transform.position - new Vector3((transform.position.x + 0.190f),transform.position.y, transform.position.z)).normalized);
+                xLast = frontCharacter.GetComponent<PlayerController>().x;
+                isCloser = false;
+            }
+            //LEFT
+            if(frontCharacter.GetComponent<PlayerController>().x < 0)
+            {
+                UpdateMotor((frontCharacter.transform.position - new Vector3((transform.position.x - 0.190f),transform.position.y, transform.position.z)).normalized);
+                xLast = frontCharacter.GetComponent<PlayerController>().x;
+                isCloser = false;
+            }
         }
         if(frontCharacter.GetComponent<PlayerController>().y != 0)
         {
-            //UpdateMotor((frontCharacter.transform.position - new Vector3(transform.position.x,(transform.position.y - 0.306f), transform.position.z).normalized));
             UpdateMotor((frontCharacter.transform.position - transform.position).normalized);
             yLast = frontCharacter.GetComponent<PlayerController>().y;
             isCloser = false;
+            /**
+            //UP
+            if(frontCharacter.GetComponent<PlayerController>().y > 0)
+            {
+                UpdateMotor((frontCharacter.transform.position - new Vector3(transform.position.x,(transform.position.y + 0.190f), transform.position.z).normalized));
+                yLast = frontCharacter.GetComponent<PlayerController>().y;
+                isCloser = false;
+            }
+            //DOWN
+            if(frontCharacter.GetComponent<PlayerController>().y < 0)
+            {
+                UpdateMotor((frontCharacter.transform.position - new Vector3(transform.position.x,(transform.position.y - 0.190f), transform.position.z).normalized));
+                yLast = frontCharacter.GetComponent<PlayerController>().y;
+                isCloser = false;
+            }**/
             //xLast = 0f;
             //yLast = 0f;
         }
@@ -54,7 +82,7 @@ public class FollowLeader : Mover
         {
             if(isCloser == false)
             {
-                UpdateMotor((frontCharacter.transform.position - new Vector3((transform.position.x - 0.243f),transform.position.y, transform.position.z)).normalized);
+                UpdateMotor((frontCharacter.transform.position - new Vector3((transform.position.x + 0.243f),transform.position.y, transform.position.z)).normalized);
                 isCloser = true;
             }
             xLast = 0f;
@@ -103,5 +131,10 @@ public class FollowLeader : Mover
         animator.SetFloat("MoveY",yLast);
         animator.SetFloat("Speed",new Vector3(xLast,yLast,0).sqrMagnitude);
         
+    }
+
+    public void SwapSprite(int skinID)
+    {
+        sprite.sprite = GameManager.instance.playerSprites[skinID];
     }
 }

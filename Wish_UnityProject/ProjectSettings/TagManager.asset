@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Fighter
+  - RedPotion
+  - GreenPotion
+  - BluePotion
   layers:
   - Default
   - TransparentFX
