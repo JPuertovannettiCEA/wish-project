@@ -268,22 +268,29 @@ public class GameManager : MonoBehaviour
             //FROM START
             case "IntroductionScene":
                 player.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                player.GetComponent<Unit>().currentHP = player.GetComponent<Unit>().maxHP;
                 player2.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                player2.GetComponent<Unit>().currentHP = player2.GetComponent<Unit>().maxHP;
                 player3.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                player3.GetComponent<Unit>().currentHP = player3.GetComponent<Unit>().maxHP;
+                player4.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                player4.GetComponent<Unit>().currentHP = player4.GetComponent<Unit>().maxHP;
+                player5.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
+                player5.GetComponent<Unit>().currentHP = player5.GetComponent<Unit>().maxHP;
                 if(isAdreamActive == true)
                 {
-                    player5.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
-                    player5.GetComponent<FollowPlayer2>().enabled = true;
-                    player4.transform.position = new Vector3(100f,100f,0f);
-                    player4.GetComponent<FollowPlayer2>().enabled = false;
+                    //player5.GetComponent<FollowPlayer2>().enabled = true;
+                    //player4.transform.position = new Vector3(100f,100f,0f);
+                    //player4.GetComponent<FollowPlayer2>().enabled = false;
+                    //DontDestroyOnLoad(player4.gameObject);
 
                 }
                 else
                 {
-                    player4.transform.position = GameObject.Find("SpawnPoint_Start").transform.position;
-                    player4.GetComponent<FollowPlayer2>().enabled = true;
-                    player5.transform.position = new Vector3(100f,100f,0f);
-                    player5.GetComponent<FollowPlayer2>().enabled = false;
+                    //player4.GetComponent<FollowPlayer2>().enabled = true;
+                    //player5.transform.position = new Vector3(100f,100f,0f);
+                    //player5.GetComponent<FollowPlayer2>().enabled = false;
+                    //DontDestroyOnLoad(player5.gameObject);
 
                 }
             break;

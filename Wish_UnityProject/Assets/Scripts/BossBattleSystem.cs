@@ -142,6 +142,7 @@ public class BossBattleSystem : MonoBehaviour
         {
             if(GameManager.instance.bossBattleTurns >= 2)
             {
+                is1Dead = true;
                 dialogueText.text = playerUnit_1.unitName + " is too afraid to battle...";
                 partyText.text = "...";
                 yield return new WaitForSeconds(2f);
@@ -170,6 +171,7 @@ public class BossBattleSystem : MonoBehaviour
         {
             if(GameManager.instance.bossBattleTurns >= 2)
             {
+                is2Dead = true;
                 dialogueText.text = playerUnit_2.unitName + " is too afraid to battle...";
                 partyText.text = "...";
                 yield return new WaitForSeconds(2f);
@@ -197,6 +199,7 @@ public class BossBattleSystem : MonoBehaviour
         {
             if(GameManager.instance.bossBattleTurns >= 2)
             {
+                is3Dead = true;
                 dialogueText.text = playerUnit_3.unitName + " is too afraid to battle...";
                 partyText.text = "...";
                 yield return new WaitForSeconds(2f);
@@ -225,6 +228,8 @@ public class BossBattleSystem : MonoBehaviour
         {
             if(GameManager.instance.bossBattleTurns >= 2)
             {
+                is4Dead = true;
+                is1Dead = false;
                 dialogueText.text = playerUnit_4.unitName + " is too afraid to battle...";
                 partyText.text = "...";
                 yield return new WaitForSeconds(2f);
