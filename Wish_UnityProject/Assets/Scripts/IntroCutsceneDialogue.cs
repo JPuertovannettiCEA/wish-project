@@ -12,7 +12,7 @@ public class IntroCutsceneDialogue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        text.text = "One day, the children went to the woods...";
+        text.text = "Under a beautiful starry sky, a group of friends reunites nearby a campfire, telling stories about how their ancestors became heroes...Until, a shooting star appears! Lighting the night with a big shiny trail!";
         StartCoroutine(NextDialogue());
     }
 
@@ -23,6 +23,8 @@ public class IntroCutsceneDialogue : MonoBehaviour
 
     IEnumerator NextDialogue()
     {
+        yield return new WaitForSeconds(6.5f);
+        text.text = "One day, the children went to the woods...";
         yield return new WaitForSeconds(6f);
         text.text = "They overcame many challenges but most of all, they discovered a new land";
         yield return new WaitForSeconds(6f);
